@@ -52,6 +52,8 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
       const headingStart = loader.querySelectorAll('.willem__h1-start');
       const headingEnd = loader.querySelectorAll('.willem__h1-end');
       const coverImageExtra = loader.querySelectorAll('.willem__cover-image-extra');
+      const otherLines = loader.querySelectorAll('.willem__line.is--1, .willem__line.is--3');
+      const stack = loader.querySelector('.willem__stack');
 
       const tl = gsap.timeline({
         defaults: {
@@ -65,20 +67,21 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
       // 1. Letters entrance
       if (loadingLetter.length) {
         tl.from(loadingLetter, {
-          yPercent: 100,
-          stagger: 0.025,
-          duration: 1.25
+          yPercent: 110,
+          stagger: 0.015,
+          duration: 1.15,
+          ease: 'power3.out'
         });
       }
 
-      // 2. Box expands to 1em
+      // 2. Box expands to 1.35em
       if (box.length) {
         tl.fromTo(box, {
           width: '0em'
         }, {
-          width: '1em',
+          width: '1.35em',
           duration: 1.25
-        }, '< 1.25');
+        }, '< 0.9');
       }
 
       // 3. Growing image expands to 100% inside box
@@ -96,7 +99,7 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
         tl.fromTo(headingStart, {
           x: '0em'
         }, {
-          x: '-0.05em',
+          x: '-0.04em',
           duration: 1.25
         }, '<');
       }
@@ -105,7 +108,7 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
         tl.fromTo(headingEnd, {
           x: '0em'
         }, {
-          x: '0.05em',
+          x: '0.04em',
           duration: 1.25
         }, '<');
       }
@@ -142,28 +145,40 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
           duration: 1.8
         }, 'expand');
 
-        // The lockup is optically centered (CM is wider than C), so the image box
-        // starts slightly right of center. Glide it to true center while it zooms
-        // so the final frame lands exactly over the page hero.
-        const lockup = loader.querySelector('.willem__h1');
-        if (lockup) {
-          tl.to(lockup, {
+        // Glide the entire typography stack so the center of the image box
+        // aligns precisely to the viewport center during zoom handoff.
+        if (stack && box[0]) {
+          tl.to(stack, {
             x: () => {
               const r = box[0].getBoundingClientRect();
               return window.innerWidth / 2 - (r.left + r.width / 2);
+            },
+            y: () => {
+              const r = box[0].getBoundingClientRect();
+              return window.innerHeight / 2 - (r.top + r.height / 2);
             },
             duration: 1.8
           }, 'expand');
         }
       }
 
+      // Top and bottom lines fade gently
+      if (otherLines.length) {
+        tl.to(otherLines, {
+          opacity: 0,
+          y: (i) => (i === 0 ? '-15px' : '15px'),
+          duration: 1.2,
+          ease: 'power1.inOut'
+        }, 'expand');
+      }
+
       // Letters drift out with the expanding box and fade gently
       if (headingStart.length && headingEnd.length) {
         tl.to([headingStart, headingEnd], {
           opacity: 0,
-          duration: 1.5,
+          duration: 1.4,
           ease: 'power1.inOut'
-        }, 'expand+=0.15');
+        }, 'expand+=0.1');
       }
 
       // Fade in the same gradient the page hero uses, so tones match at handoff
@@ -211,6 +226,8 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
       gsap.killTweensOf(loader);
       gsap.killTweensOf('.willem__letter');
       gsap.killTweensOf('.willem__h1');
+      gsap.killTweensOf('.willem__stack');
+      gsap.killTweensOf('.willem__line');
       gsap.killTweensOf('.willem-loader__box');
       gsap.killTweensOf('.willem__growing-image');
       gsap.killTweensOf('.willem__h1-start');

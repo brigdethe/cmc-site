@@ -44,19 +44,50 @@
   overflow: hidden;
 }
 
+.willem__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.2rem, 4.4vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  text-transform: lowercase;
+  text-align: center;
+  position: relative;
+  width: auto;
+  white-space: nowrap;
+}
+
+.willem__line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  width: auto;
+}
+
+.willem__line-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
 .willem__h1 {
   white-space: nowrap;
   justify-content: center;
-  font-size: clamp(3.5rem, 14vw, 11em);
-  font-weight: 500;
-  line-height: .75;
+  align-items: center;
   display: flex;
   position: relative;
-  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .willem__h1-start {
   justify-content: flex-end;
+  align-items: center;
   width: auto;
   display: flex;
   overflow: hidden;
@@ -64,14 +95,16 @@
 
 .willem__h1-end {
   justify-content: flex-start;
+  align-items: center;
   width: auto;
   display: flex;
   overflow: hidden;
 }
 
 .willem__letter {
-  display: block;
+  display: inline-block;
   position: relative;
+  will-change: transform;
 }
 
 .willem-loader__box {
@@ -81,13 +114,14 @@
   width: 0;
   display: flex;
   position: relative;
+  margin: 0 0.12em;
 }
 
 .willem-loader__box-inner {
   justify-content: center;
   align-items: center;
-  min-width: 1em;
-  height: 95%;
+  min-width: 1.4em;
+  height: 0.9em;
   display: flex;
   position: relative;
 }
@@ -107,7 +141,7 @@
 
 .willem__growing-image-wrap {
   width: 100%;
-  min-width: 1em;
+  min-width: 1.4em;
   height: 100%;
   position: absolute;
 }

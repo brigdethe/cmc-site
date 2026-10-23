@@ -79,3 +79,10 @@ Process hero verification: production build passes. One browser check confirmed 
 
 ## Latest correction — restore original hero, process follows it
 User clarified the process layout is a SECTION AFTER the original full-bleed hero. Original Hero.jsx restored from a6ee37a. Process now lives in ProcessSection.jsx, rendered immediately after Hero, before the existing intro/footer. Process root id=process; title is h2. Its sticky scroll math uses its own offset, not the page origin. Header uses light controls over hero and dark controls when process reaches the header. Loader readiness again targets .hero-media img. Keep synchronized loader state and CMC logo. This supersedes the previous process-as-hero instruction.
+
+## Public preview tunnel
+User authorized switching the existing ngrok endpoint from port5174 to this app on5178. Public URL: https://sue-unprocessed-morton.ngrok-free.dev . Existing ngrok agent API4040 manages tunnel named thirdrecreate, target http://127.0.0.1:5178. Vite allowedHosts contains only that exact hostname. Public HTML and hero asset verified HTTP200. Keep Vite and ngrok running for link availability; do not switch it to another project without user direction.
+
+## Kinetic split-letter loader checkpoint
+Replaced the photo strip preloader with the Osmo Willem-style kinetic split-letter loader (`Preloader.jsx`, `cmc-preloader.js`, `loader.css`). Displays "CM" on left and "C" on right with an expanding central photo box cycling through shutter frames and landing on the page hero image (`/media/hero.jpg`). Optical lockup centering smoothly glides into true viewport center during the 100vw × 100svh zoom with matching crop (`48% 50%`), scale (`1.025`), and `.willem__shade` gradient overlay, eliminating flashes and jumps during handoff to the page hero. Letters fade gracefully over 1.5s. All 3 unit tests pass and Vite production build passes cleanly.
+

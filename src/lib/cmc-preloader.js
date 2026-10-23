@@ -1,79 +1,221 @@
-// CMC's word/color/rotation sequence, adapted to an explicit React lifecycle.
-// No Thirdway runtime or loader artwork. See NOTICE.md for provenance.
-const words = ['competition', 'markets', 'policy', 'center', 'competition'];
-const colors = ['#171717', '#3d2b27', '#cc9632', '#2a4030', '#171717'];
-const easing = 'cubic-bezier(.45,0,.55,1)';
+import gsap from 'gsap';
 
-export function startPreloader(loader, { onReveal, onComplete }) {
+export function startPreloader(loader, { onReveal, onComplete } = {}) {
   if (!loader) return;
   const root = document.documentElement;
   root.classList.add('is-preloading');
   let disposed = false, revealed = false, finished = false;
-  const animations = new Set(), timers = new Set();
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced = typeof matchMedia === 'function' ? matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+
   const reveal = () => {
     if (disposed || revealed) return;
     revealed = true;
     loader.dataset.phase = 'reveal';
-    onReveal();
+    if (onReveal) onReveal();
   };
-  const cleanup = () => {
-    timers.forEach(clearTimeout);
-    animations.forEach(animation => animation.cancel());
-    root.classList.remove('is-preloading');
-  };
+
   const finish = () => {
     if (disposed || finished) return;
     reveal();
     finished = true;
-    loader.style.opacity = '0';
-    cleanup();
-    onComplete();
+    root.classList.remove('is-preloading');
+    if (loader) loader.style.display = 'none';
+    if (onComplete) onComplete();
   };
-  const pause = ms => new Promise(resolve => {
-    const id = setTimeout(() => { timers.delete(id); resolve(); }, ms);
-    timers.add(id);
-  });
-  const animate = async (element, frames, options) => {
-    if (!element || disposed) return;
-    const animation = element.animate(frames, { fill: 'forwards', ...options });
-    animations.add(animation);
-    await animation.finished.catch(() => {});
-  };
+
+  if (reduced) {
+    finish();
+    return () => {};
+  }
+
   async function run() {
     loader.dataset.phase = 'waiting';
-    const image = document.querySelector('.hero-media img');
-    await Promise.allSettled([document.fonts.ready, image?.decode()]);
+    const heroImage = typeof document !== 'undefined' ? document.querySelector('.hero-media img') : null;
+    const loaderImgs = Array.from(loader.querySelectorAll?.('img') || []);
+    const promises = [
+      typeof document !== 'undefined' && document.fonts?.ready,
+      heroImage?.decode?.()
+    ];
+    loaderImgs.forEach(img => {
+      if (img?.decode) promises.push(img.decode().catch(() => {}));
+    });
+
+    await Promise.allSettled(promises.filter(Boolean));
     if (disposed) return;
-    if (reduced) { finish(); return; }
-    loader.classList.add('intro-ready');
-    loader.dataset.phase = 'words';
-    const mark = loader.querySelector('.intro-mark');
-    const star = mark.querySelector('svg');
-    const spacer = loader.querySelector('.intro-spacer');
-    const slots = loader.querySelectorAll('[data-word]');
-    await animate(mark, [{ opacity: 0, transform: 'translateX(-20px)' }, { opacity: 1, transform: 'translateX(0)' }], { duration: 200, easing: 'ease-out' });
-    for (let i = 0; i < words.length; i++) {
-      if (disposed || finished) return;
-      spacer.textContent = words[i];
-      loader.style.backgroundColor = colors[i];
-      loader.dataset.word = words[i];
-      const steps = [
-        animate(star, [{ transform: `rotate(${(i + 1) * 180}deg)` }, { transform: `rotate(${i * 180}deg)` }], { duration: 200, easing }),
-        animate(slots[i], [{ transform: 'translateY(0)' }, { transform: 'translateY(-100%)' }], { duration: 200, easing }),
-      ];
-      if (i > 0) steps.push(animate(slots[i - 1], [{ transform: 'translateY(-250%)' }], { duration: 200, easing }));
-      await Promise.all(steps);
-      await pause(350);
+
+    loader.dataset.phase = 'running';
+
+    if (typeof window !== 'undefined' && typeof gsap !== 'undefined') {
+      const loadingLetter = loader.querySelectorAll('.willem__letter');
+      const box = loader.querySelectorAll('.willem-loader__box');
+      const growingImage = loader.querySelectorAll('.willem__growing-image');
+      const headingStart = loader.querySelectorAll('.willem__h1-start');
+      const headingEnd = loader.querySelectorAll('.willem__h1-end');
+      const coverImageExtra = loader.querySelectorAll('.willem__cover-image-extra');
+
+      const tl = gsap.timeline({
+        defaults: {
+          ease: 'expo.inOut'
+        },
+        onComplete: () => {
+          finish();
+        }
+      });
+
+      // 1. Letters entrance
+      if (loadingLetter.length) {
+        tl.from(loadingLetter, {
+          yPercent: 100,
+          stagger: 0.025,
+          duration: 1.25
+        });
+      }
+
+      // 2. Box expands to 1em
+      if (box.length) {
+        tl.fromTo(box, {
+          width: '0em'
+        }, {
+          width: '1em',
+          duration: 1.25
+        }, '< 1.25');
+      }
+
+      // 3. Growing image expands to 100% inside box
+      if (growingImage.length) {
+        tl.fromTo(growingImage, {
+          width: '0%'
+        }, {
+          width: '100%',
+          duration: 1.25
+        }, '<');
+      }
+
+      // 4. Letters shift outward slightly
+      if (headingStart.length) {
+        tl.fromTo(headingStart, {
+          x: '0em'
+        }, {
+          x: '-0.05em',
+          duration: 1.25
+        }, '<');
+      }
+
+      if (headingEnd.length) {
+        tl.fromTo(headingEnd, {
+          x: '0em'
+        }, {
+          x: '0.05em',
+          duration: 1.25
+        }, '<');
+      }
+
+      // 5. Extra shutter images rapidly cycle through
+      if (coverImageExtra.length) {
+        tl.fromTo(coverImageExtra, {
+          opacity: 1
+        }, {
+          opacity: 0,
+          duration: 0.05,
+          ease: 'none',
+          stagger: 0.45
+        }, '-=0.05');
+      }
+
+      // 6. Fullscreen expansion: growingImage lands on exactly the hero's box
+      //    (100vw × 100svh, matching .hero-media>img); box pushes letters off-screen
+      const shade = loader.querySelector('.willem__shade');
+
+      if (growingImage.length) {
+        tl.to(growingImage, {
+          width: '100vw',
+          height: '100svh',
+          duration: 1.8
+        }, '< 1.15');
+      }
+
+      tl.addLabel('expand', '<');
+
+      if (box.length) {
+        tl.to(box, {
+          width: '110vw',
+          duration: 1.8
+        }, 'expand');
+
+        // The lockup is optically centered (CM is wider than C), so the image box
+        // starts slightly right of center. Glide it to true center while it zooms
+        // so the final frame lands exactly over the page hero.
+        const lockup = loader.querySelector('.willem__h1');
+        if (lockup) {
+          tl.to(lockup, {
+            x: () => {
+              const r = box[0].getBoundingClientRect();
+              return window.innerWidth / 2 - (r.left + r.width / 2);
+            },
+            duration: 1.8
+          }, 'expand');
+        }
+      }
+
+      // Letters drift out with the expanding box and fade gently
+      if (headingStart.length && headingEnd.length) {
+        tl.to([headingStart, headingEnd], {
+          opacity: 0,
+          duration: 1.5,
+          ease: 'power1.inOut'
+        }, 'expand+=0.15');
+      }
+
+      // Fade in the same gradient the page hero uses, so tones match at handoff
+      if (shade) {
+        tl.to(shade, {
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power1.inOut'
+        }, 'expand+=0.6');
+      }
+
+      // 7. Image has landed: start the hero entrance underneath
+      tl.addLabel('landed', 'expand+=1.8');
+      tl.add(() => {
+        reveal();
+      }, 'landed');
+
+      // 8. Frames are identical now, so this fade is invisible apart from
+      //    letting the hero copy/header animate in
+      tl.to(loader, {
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power1.out'
+      }, 'landed+=0.1');
+
+    } else {
+      // Fallback for headless test environments
+      reveal();
+      if (typeof loader.animate === 'function') {
+        const anim = loader.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 50 });
+        await anim?.finished?.catch?.(() => {});
+      }
+      finish();
     }
-    if (disposed || finished) return;
-    // Entrance starts behind the opaque loader; its fade reveals a moving hero.
-    // Keep the loader mounted and page inert throughout the overlapping exit.
-    reveal();
-    await animate(loader, [{ opacity: 1 }, { opacity: 0 }], { duration: 750, easing: 'cubic-bezier(.22,1,.36,1)' });
-    finish();
   }
-  timers.add(setTimeout(finish, 10000));
+
+  const timeoutId = setTimeout(finish, 10000);
   run().catch(() => finish());
-  return () => { disposed = true; cleanup(); };
+
+  return () => {
+    disposed = true;
+    clearTimeout(timeoutId);
+    root.classList.remove('is-preloading');
+    if (typeof window !== 'undefined' && typeof gsap !== 'undefined') {
+      gsap.killTweensOf(loader);
+      gsap.killTweensOf('.willem__letter');
+      gsap.killTweensOf('.willem__h1');
+      gsap.killTweensOf('.willem-loader__box');
+      gsap.killTweensOf('.willem__growing-image');
+      gsap.killTweensOf('.willem__h1-start');
+      gsap.killTweensOf('.willem__h1-end');
+      gsap.killTweensOf('.willem__cover-image-extra');
+    }
+  };
 }

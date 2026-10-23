@@ -4,6 +4,11 @@ import { Arrow } from './Header.jsx';
 const DEFAULT_IMAGE = 'https://ik.imagekit.io/dr5fryhth/Screenshots/Screenshot%202026-04-10%20110118.png?updatedAt=1775838071060';
 const DEFAULT_VIDEO = 'https://kabaka.lon1.cdn.digitaloceanspaces.com/video_2026-04-15_14-58-37.mp4#t=0,60';
 
+function getFragmentEnd(src) {
+  const match = src?.match(/#t=\d*(?:,\s*(\d+(?:\.\d+)?))/);
+  return match?.[1] ? parseFloat(match[1]) : null;
+}
+
 export default function Hero({
   ready,
   videoSrc = DEFAULT_VIDEO,
@@ -12,6 +17,7 @@ export default function Hero({
   const [loadVideo, setLoadVideo] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
+  const fragmentEnd = getFragmentEnd(videoSrc);
 
   useEffect(() => {
     if (!ready) return;
@@ -27,6 +33,26 @@ export default function Hero({
     }
   }, [loadVideo]);
 
+  const restartLoop = (e) => {
+    const video = e.currentTarget;
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  };
+
+  const handleTimeUpdate = (e) => {
+    const video = e.currentTarget;
+    if (fragmentEnd && video.currentTime >= fragmentEnd) {
+      restartLoop(e);
+    }
+  };
+
+  const handlePause = (e) => {
+    const video = e.currentTarget;
+    if (fragmentEnd && video.currentTime >= fragmentEnd - 0.2) {
+      restartLoop(e);
+    }
+  };
+
   return (
     <section className={`hero ${ready ? 'hero-ready' : ''}`} id="home">
       <div className="hero-media" aria-hidden="true">
@@ -40,6 +66,9 @@ export default function Hero({
             playsInline
             onPlaying={() => setIsPlaying(true)}
             onPlay={() => setIsPlaying(true)}
+            onEnded={restartLoop}
+            onTimeUpdate={handleTimeUpdate}
+            onPause={handlePause}
             style={{
               opacity: isPlaying ? 1 : 0,
               transition: 'opacity 0.8s ease-in-out',

@@ -5,8 +5,8 @@ export function Arrow({ className='' }) { return <span className={`arrow ${class
 function Clock() {
   const [time,setTime]=useState(()=>new Date());
   useEffect(()=>{const id=setInterval(()=>setTime(new Date()),1000);return()=>clearInterval(id);},[]);
-  const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'UTC',hour:'2-digit',minute:'2-digit',hour12:false}).format(time).split(':');
-  return <time className="clock" dateTime={time.toISOString()} aria-label={`${parts.join(':')} GMT`}><span>{parts[0]}</span><b>:</b><span>{parts[1]}</span><strong>GMT</strong></time>;
+  const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Accra',hour:'2-digit',minute:'2-digit',hour12:false}).format(time).split(':');
+  return <time className="clock" dateTime={time.toISOString()} title="Accra, Ghana" aria-label={`${parts.join(':')} in Accra, Ghana`}><span>{parts[0]}</span><b>:</b><span>{parts[1]}</span><strong>ACCRA</strong></time>;
 }
 
 const links=[['Approach','#approach'],['Services','#services'],['People','#people'],['Projects','#projects'],['Vision & Values','#vision'],['Our Home','#home'],['Journal','#journal']];

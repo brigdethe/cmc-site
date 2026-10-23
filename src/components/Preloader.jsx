@@ -49,7 +49,7 @@ export default function Preloader({ onReveal, onComplete }) {
                   />
                   <img
                     className="willem__cover-image"
-                    src="/media/hero.jpg"
+                    src="https://ik.imagekit.io/dr5fryhth/Screenshots/Screenshot%202026-04-10%20110118.png?updatedAt=1775838071060"
                     alt=""
                     loading="eager"
                   />

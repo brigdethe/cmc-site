@@ -17,7 +17,17 @@ export default function Hero({
   const [loadVideo, setLoadVideo] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
+  const initialSeekDone = useRef(false);
   const fragmentEnd = getFragmentEnd(videoSrc);
+
+  const applyInitialSeek = (video) => {
+    if (!initialSeekDone.current && video) {
+      initialSeekDone.current = true;
+      try {
+        video.currentTime = 17;
+      } catch (_) {}
+    }
+  };
 
   useEffect(() => {
     if (!ready) return;
@@ -29,7 +39,11 @@ export default function Hero({
 
   useEffect(() => {
     if (loadVideo && videoRef.current) {
-      videoRef.current.play().catch(() => {});
+      const video = videoRef.current;
+      if (video.readyState >= 1) {
+        applyInitialSeek(video);
+      }
+      video.play().catch(() => {});
     }
   }, [loadVideo]);
 
@@ -64,8 +78,13 @@ export default function Hero({
             muted
             loop
             playsInline
+            onLoadedMetadata={(e) => applyInitialSeek(e.currentTarget)}
+            onCanPlay={(e) => applyInitialSeek(e.currentTarget)}
             onPlaying={() => setIsPlaying(true)}
-            onPlay={() => setIsPlaying(true)}
+            onPlay={(e) => {
+              applyInitialSeek(e.currentTarget);
+              setIsPlaying(true);
+            }}
             onEnded={restartLoop}
             onTimeUpdate={handleTimeUpdate}
             onPause={handlePause}

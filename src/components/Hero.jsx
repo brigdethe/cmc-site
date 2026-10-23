@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Arrow } from './Header.jsx';
 
 const DEFAULT_IMAGE = 'https://ik.imagekit.io/dr5fryhth/Screenshots/Screenshot%202026-04-10%20110118.png?updatedAt=1775838071060';
-const DEFAULT_VIDEO = 'https://kabaka.lon1.cdn.digitaloceanspaces.com/video_2026-04-15_14-58-37.mp4#t=0,60';
+const DEFAULT_VIDEO = '/media/usehero.mp4';
 
 function getFragmentEnd(src) {
   const match = src?.match(/#t=\d*(?:,\s*(\d+(?:\.\d+)?))/);

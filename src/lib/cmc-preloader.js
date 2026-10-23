@@ -42,7 +42,7 @@ export function startPreloader(loader, { onReveal, onComplete }) {
   };
   async function run() {
     loader.dataset.phase = 'waiting';
-    const image = document.querySelector('.process-main-image img');
+    const image = document.querySelector('.hero-media img');
     await Promise.allSettled([document.fonts.ready, image?.decode()]);
     if (disposed) return;
     if (reduced) { finish(); return; }

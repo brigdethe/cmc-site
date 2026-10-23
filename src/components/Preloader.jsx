@@ -40,8 +40,8 @@ export default function Preloader({ onReveal, onComplete }) {
                 <div className="willem__growing-image">
                   <div className="willem__growing-image-wrap">
                     <img
-                      className="willem__cover-image-extra is--1"
-                      src="/images/loader-1.jpg"
+                      className="willem__cover-image-extra is--1 is--logo"
+                      src="/branding/cmc-round-logo.svg"
                       alt=""
                       loading="eager"
                     />

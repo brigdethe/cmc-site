@@ -125,14 +125,27 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
         }, '-=0.05');
       }
 
-      // 6. Fullscreen expansion: growingImage lands on exactly the hero's box
-      //    (100vw × 100svh, matching .hero-media>img); box pushes letters off-screen
+      // Use the hero's layout bounds, not 100vw: desktop reserves scrollbar space.
+      // offsetWidth/Height exclude the poster's existing overscan transform.
+      let landingBox;
+      const getLandingBox = () => {
+        if (landingBox) return landingBox;
+        const media = document.querySelector('.hero-media > img, .hero-media > video');
+        const rect = media?.getBoundingClientRect();
+        landingBox = {
+          width: media?.offsetWidth || root.clientWidth,
+          height: media?.offsetHeight || window.innerHeight,
+          centerX: rect ? rect.left + rect.width / 2 : root.clientWidth / 2,
+          centerY: rect ? rect.top + rect.height / 2 : window.innerHeight / 2
+        };
+        return landingBox;
+      };
       const shade = loader.querySelector('.willem__shade');
 
       if (growingImage.length) {
         tl.to(growingImage, {
-          width: '100vw',
-          height: '100svh',
+          width: () => getLandingBox().width,
+          height: () => getLandingBox().height,
           duration: 1.8
         }, '< 1.15');
       }
@@ -141,7 +154,7 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
 
       if (box.length) {
         tl.to(box, {
-          width: '110vw',
+          width: () => getLandingBox().width * 1.1,
           duration: 1.8
         }, 'expand');
 
@@ -151,11 +164,11 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
           tl.to(stack, {
             x: () => {
               const r = box[0].getBoundingClientRect();
-              return window.innerWidth / 2 - (r.left + r.width / 2);
+              return getLandingBox().centerX - (r.left + r.width / 2);
             },
             y: () => {
               const r = box[0].getBoundingClientRect();
-              return window.innerHeight / 2 - (r.top + r.height / 2);
+              return getLandingBox().centerY - (r.top + r.height / 2);
             },
             duration: 1.8
           }, 'expand');

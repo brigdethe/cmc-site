@@ -1,0 +1,31 @@
+.process-hero{position:relative;height:460svh;background:var(--cream);color:var(--ink)}
+.process-stage{position:sticky;top:0;height:100svh;min-height:620px;padding:80px 32px 24px;display:flex;flex-direction:column;opacity:0;transform:translateY(16px);transition:opacity .65s,transform .75s var(--ease)}
+.process-ready .process-stage{opacity:1;transform:none}
+.process-stage h1{font-size:clamp(46px,5vw,80px);font-weight:400;letter-spacing:-.065em;line-height:1;margin:0 0 46px}
+.process-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.58fr) minmax(0,1.1fr);gap:16px;flex:1;min-height:0}
+.process-main-image,.process-small-image{overflow:hidden;border-radius:3px;background:#9c8062}
+.process-main-image img,.process-small-image img{width:100%;height:100%;object-fit:cover;display:block;transition:object-position .7s var(--ease)}
+.process-main-image img{object-fit:cover}
+.process-side{display:flex;flex-direction:column;justify-content:space-between;min-height:0;gap:20px}
+.process-counter{display:flex;justify-content:flex-end;align-items:center;gap:10px;font-size:17px;letter-spacing:-.04em}
+.digit-pill{border:1.5px solid currentColor;border-radius:20px;line-height:17px;padding:0 3px;font-variant-numeric:tabular-nums}
+.process-small-image{height:36%;min-height:120px;width:100%;aspect-ratio:1}
+.process-detail{border-left:1px solid #2229;padding-left:30px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:0}
+.process-detail h2{font-size:clamp(32px,3vw,48px);font-weight:400;line-height:1;letter-spacing:-.055em;margin:-4px 0 0}
+.process-copy{max-height:80%;overflow-y:auto;scrollbar-width:thin;padding-right:6px}
+.process-copy p{font-size:clamp(18px,1.6vw,25px);letter-spacing:-.04em;line-height:1.16;margin:0 0 28px}
+.process-copy .process-more p{font-size:17px;line-height:1.35;margin-bottom:24px}
+.process-read{display:inline-flex;align-items:center;gap:9px;font-size:16px;letter-spacing:-.035em;padding:0}
+.process-read>span{display:grid;place-items:center;background:var(--ink);color:var(--cream);width:28px;height:19px;border-radius:20px;font-size:18px;line-height:1}
+.process-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:18px;font-size:13px;letter-spacing:-.02em}
+.process-scroll{display:inline-flex;align-items:center;gap:8px}
+.process-controls{display:flex;gap:10px}
+.process-controls button{width:30px;height:21px;border:1px solid var(--ink);border-radius:20px;line-height:17px;font-size:18px;padding:0}
+.process-controls button:disabled{opacity:.3;cursor:default}
+.process-enter{animation:process-enter .4s var(--ease) both}
+@keyframes process-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(min-width:1600px){.process-stage{padding-inline:48px}}
+@media(max-height:740px) and (min-width:768px){.process-stage{padding-top:78px;min-height:520px}.process-stage h1{margin-bottom:28px;font-size:54px}.process-copy p{font-size:18px;line-height:1.18}.process-detail{padding-left:22px}.process-copy{max-height:82%}}
+@media(max-width:767px){.process-hero{height:auto}.process-stage{position:relative;height:auto;min-height:100svh;padding:90px 20px 30px;transform:none}.process-stage h1{font-size:clamp(38px,9vw,60px);margin-bottom:30px}.process-grid{grid-template-columns:1fr;gap:20px}.process-main-image{height:37svh;min-height:220px;max-height:420px}.process-side{flex-direction:row;align-items:center;gap:0}.process-counter{justify-content:flex-start;font-size:15px}.process-small-image{display:none}.process-detail{border-left:0;border-top:1px solid #2225;padding:20px 0 0;gap:32px}.process-detail h2{font-size:36px;margin:0}.process-copy{max-height:none;overflow:visible;padding:0}.process-copy p{font-size:20px;line-height:1.2;margin-bottom:25px}.process-bottom{padding-top:30px}.process-scroll{visibility:hidden}.process-controls button{width:38px;height:28px;font-size:21px}.process-controls{gap:12px}}
+@media(prefers-reduced-motion:reduce){.process-enter{animation:none}.process-stage,.process-main-image img,.process-small-image img{transition:none}}
+.process-copy{overflow:visible;max-height:none;flex-shrink:0}.process-copy:has([aria-expanded="true"]){overflow-y:auto;max-height:75%;flex-shrink:1}@media(max-width:767px){.process-copy:has([aria-expanded="true"]){overflow:visible;max-height:none}}

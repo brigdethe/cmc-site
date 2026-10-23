@@ -12,3 +12,7 @@
 @media(max-width:380px){.clock strong{display:none}.navigation{width:125px}.wordmark{font-size:20px}.hero h1{font-size:9vw}.contact-trigger>span:first-child{font-size:12px}.navigation-content nav>a{font-size:26px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.hero-first{transform:none}.hero-media>img,.hero-media>video{transform:none}.menu-backdrop,.contact-drawer::backdrop{backdrop-filter:none}}
 .site-header{color:var(--header-ink,var(--cream))}.contact-trigger .arrow:after{color:var(--header-arrow-ink,var(--ink))}
+.wordmark>img{display:block;width:25px;height:25px;object-fit:contain}.footer-brand{display:inline-flex;align-items:center;gap:10px}.footer-brand>img{width:28px;height:28px}.hero-first{transition-delay:0s}.site-header{transition-duration:.65s,.75s}@media(max-width:767px){.wordmark>img{width:21px;height:21px}}
+/* Keep viewport geometry stable when overlays lock page scrolling. */
+html{scrollbar-gutter:stable}
+:root{--header-ink:#22231d;--header-arrow-ink:#f7f1e9}

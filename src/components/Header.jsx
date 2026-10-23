@@ -11,7 +11,7 @@ function Clock() {
 
 const links=[['Approach','#approach'],['Services','#services'],['People','#people'],['Projects','#projects'],['Vision & Values','#vision'],['Our Home','#home'],['Journal','#journal']];
 
-export default function Header({ ready, onContact, onMenuChange }) {
+export default function Header({ ready, loading, onContact, onMenuChange }) {
   const [open,setOpen]=useState(false);
   const panel=useRef(null),toggle=useRef(null),strip=useRef(null);
   useEffect(()=>{
@@ -33,10 +33,10 @@ export default function Header({ ready, onContact, onMenuChange }) {
     }
   };
   return <>
-    <header className={`site-header ${ready?'is-ready':''} ${open?'menu-is-open':''}`}>
+    <header className={`site-header ${ready?'is-ready':''} ${open?'menu-is-open':''}`} inert={loading}>
       <Clock/>
       <div className={`navigation ${open?'is-open':''}`} ref={panel} onKeyDown={keys} role={open?'dialog':undefined} aria-modal={open?'true':undefined} aria-label={open?'Main navigation':undefined}>
-        <div className="navigation-bar"><a className="wordmark" href="#home" onClick={close} aria-label="CMC Studio home">cmc<span>STUDIO</span></a><button className="menu-toggle" ref={toggle} onClick={()=>open?close():setOpen(true)} aria-expanded={open} aria-controls="main-navigation" aria-label={open?'Close menu':'Open menu'}><span/><span/></button></div>
+        <div className="navigation-bar"><a className="wordmark" href="#home" onClick={close} aria-label="CMC home">cmc<img src="/branding/cmc-round-logo.svg" alt="" width="25" height="25"/></a><button className="menu-toggle" ref={toggle} onClick={()=>open?close():setOpen(true)} aria-expanded={open} aria-controls="main-navigation" aria-label={open?'Close menu':'Open menu'}><span/><span/></button></div>
         <div className="navigation-content" id="main-navigation" inert={!open} aria-hidden={!open}>
           <nav>{links.map(([label,href])=><a key={label} href={href} onClick={e=>{e.preventDefault();close();document.querySelector(href)?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}}>{label}<span aria-hidden="true">↗</span></a>)}</nav>
           <div className="latest-heading"><span>● Lately in the studio</span><div><button aria-label="Previous story" onClick={()=>strip.current?.scrollBy({left:-250,behavior:'smooth'})}>←</button><button aria-label="Next story" onClick={()=>strip.current?.scrollBy({left:250,behavior:'smooth'})}>→</button></div></div>

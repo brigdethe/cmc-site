@@ -26,10 +26,53 @@ Build a NEW independent React application here. Do not modify `C:\Users\Bright\D
 - Avoid generic cards, decorative gradients and unrelated sections. Scope must stay small.
 
 ## Commands
-`npm install`, `npm run dev` (127.0.0.1:5178), `npm run build`, `npm run preview`.
+`npm install`, `npm run dev` (127.0.0.1:5178), `npm run build`, `npm test`, `npm run preview`.
 
 ## Current status
-Scaffolding in progress. Update this section as milestones complete. Do not claim verified until actual command/browser evidence is recorded.
+Implemented: independent React/Vite app with CMC slot loader, live GMT clock, expanding centered navigation, card strip controls, full-screen original generated hero image, scroll continuation, and a native-dialog contact drawer. Content is intentionally lorem ipsum. Local image/fonts/logo require no external media service. Build passes. There is no GSAP dependency; motion uses CSS and Web Animations API.
+
+User's latest corrections: replace the navbar STUDIO badge with CMCMain's exact round logo, and synchronize loader and hero. Logo is copied unchanged to `public/branding/cmc-round-logo.svg`, used in header and footer. Do not replace it with a text badge or reconstructed SVG.
+
+## Loader synchronization — understand before editing
+- `App.jsx` has TWO independent states: `loading` controls loader mount/input locking; `ready` controls hero and header entrance. Do not collapse them into a single boolean again.
+- `startPreloader(loader, {onReveal,onComplete})` waits for `document.fonts.ready` AND hero image `decode()`. It runs CMC's original five words/colors, 200ms slot/rotation steps and 350ms holds.
+- `onReveal` runs BEFORE loader fade. It sets ready=true so header/headline begin animating behind the still-opaque overlay. Loader then fades for750ms. `onComplete` runs afterward, unmounting it and unlocking the page.
+- Previous bug: desktop loader background turned transparent before the hero/header became ready; the hero entrance then started after the loader disappeared. Do not reintroduce that early transparent-background timeout.
+- Loader owns animation/timer cancellation and root `is-preloading` class. React owns header/main inert state. Do not directly restore main.inert from a captured initial value: it can re-lock the finished page.
+- Reduced motion skips the sequence after assets are ready. The10s watchdog releases the page if media readiness fails. Cleanup prevents late callbacks after unmount.
+- `src/lib/cmc-preloader.test.js` verifies reveal-before-fade-before-complete order, image gating/cancellation, and reduced motion. These3 targeted tests pass.
+
+## Browser verification recorded
+- Desktop: loader enters and completes; hero renders local generated image; centered nav expands to680px, Escape closes and restores toggle focus; background scroll locks while open.
+- Contact dialog: opens, native focus containment, all form fields accept demo values; Preview message produces explicit no-message-sent status. No backend/network submission exists.
+- Responsive check through a390px iframe caught long headline clipping. Mobile headline was reduced to9vw to fit the longer placeholder line. Navbar controls fit at390px. This is browser responsive QA, not a physical phone certification.
+- Dependency audit found0 vulnerabilities. Vite production build passes. Fresh-browser console must be rechecked after final corrections; historical console entries can remain from pre-fix reloads.
+
+## Known limitations / exact next steps
+1. This milestone is ONE PAGE, not five routes. Some nav destinations are placeholder anchors near the footer. Do not claim substantive People/Projects/Journal pages exist. Only build them if requested.
+2. Hero uses a generated photograph with slow CSS motion, NOT video. `Hero` accepts optional `videoSrc`; use only user-supplied/licensed footage. Preserve the original generated photo as poster/fallback.
+3. Replace lorem ipsum/CMC demo branding only at user direction. Haffer and CMC logo rights remain unverified for public launch; no legal-safety guarantee was given.
+4. Header ink switches from cream to dark when scrolling onto the cream section using CSS variables set by App's rAF-throttled scroll handler. Check this if changing hero height.
+5. If changing loader exit duration, adjust overlapping hero/header transition durations and rerun `npm test`, then visually reload once. Preserve reduced motion and cancellation behavior.
+6. Vite config explicitly sets `esbuild.jsx='automatic'`; removing it without adding the React plugin causes `React is not defined` in JSX files. Do not regress this.
+7. Native dialog uses a750px desktop drawer with sliding entrance/exit. Demo field values are not persisted and no API is configured. Do not add external transmission without an explicit task.
+
+## Files and content editing
+- Typography/spacing/palette/mediaqueries: `src/styles.css` (currently compact CSS; organize carefully rather than wholesale replacing).
+- CMC-only loader appearance: `src/loader.css`; motion controller: `src/lib/cmc-preloader.js`; wrapper markup: `src/components/Preloader.jsx`.
+- Menu labels/card content: `src/components/Header.jsx`; live GMT timezone is intentionally UTC, displayed GMT.
+- Headline/hero copy: `src/components/Hero.jsx`; the two headline spans are intentional. Check longest line at320/390px after changing text.
+- Contact text/fields: `src/components/ContactDrawer.jsx`; current title aria-labelledby and native dialog must remain.
+- Hero image: `public/media/hero.jpg`,348KB, originally generated specifically for this app, no remote runtime dependency.
+- Asset licensing/provenance: `NOTICE.md`. Preserve that file, and add provenance for replacements.
 
 ## Safe continuation rules for smaller models
 Read this file, package.json, relevant components and git status first. Do not replace the app wholesale. Fix one visible mismatch at a time and preserve working interactions. Use the original website only for visual observation, never importing bundles. Keep source and donor projects unchanged. Keep all new work in this directory. Finish by updating this file with exact remaining work and test results. Never promise zero legal risk.
+
+## Scrollbar layout fix
+Root html uses scrollbar-gutter:stable so menu/contact scroll locking does not widen the page or move the centered navigation. Keep this rule when editing overlay behavior. No new test suite is needed for this CSS correction.
+
+## Latest approved scope change — process hero
+User CANCELLED team carousel and image contact-section work. Do not build those. User also prohibited further image generation: reuse public/media/hero.jpg for ALL images. Hero.jsx is now an independent six-step process hero matching the annotated Approach layout: cream background, heading, large left image, small inset image/counter, bordered right title/copy, Read more. Desktop uses CSS sticky over460svh with scroll-driven step changes every60vh; arrows scroll between steps. Mobile is natural-height and arrows change steps without scroll pinning. ProcessHero.css owns this layout. All step copy is lorem ipsum. Header is dark on cream; App no longer uses old full-bleed hero scroll-color logic. Loader readiness now targets .process-main-image img. Retain existing CMC loader, logo, navbar and contact drawer. Old hero CSS remains unused; do not accidentally restore it. Existing lower placeholder intro/footer remain; no new team/CTA sections were implemented.
+
+Process hero verification: production build passes. One browser check confirmed desktop layout, same local image in both image slots, and Next moves01/06 Discover to02/06 Define while the stage stays pinned. No additional test suites were run. Collapsed copy has no inner scrollbar; expanded long details may scroll within the right column on desktop. User requests minimal tests/token use; do not run unrelated checks.

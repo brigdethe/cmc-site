@@ -64,9 +64,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   position: relative;
   width: auto;
+}
+
+.willem__line.is--1,
+.willem__line.is--3 {
+  overflow: hidden;
+}
+
+.willem__line.is--2 {
+  overflow: visible;
 }
 
 .willem__line-inner {

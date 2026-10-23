@@ -79,6 +79,14 @@ export default function OurHomeSections() {
       sceneMeasurements.forEach(([el, rect]) => {
         const progress = reduced ? .5 : Math.min(1, Math.max(0, (height - rect.top) / (height + rect.height)));
         el.style.setProperty('--oh-parallax', `${(progress - .5) * 9}%`);
+        if (el.classList.contains('oh-intro-scene')) {
+          // Crop a viewport-fixed image to this section's moving window.
+          // The title reveals the image rather than carrying it down the page.
+          el.dataset.ohVisible = String(rect.bottom > 0 && rect.top < height);
+          el.style.setProperty('--oh-clip-top', `${Math.max(0, rect.top)}px`);
+          el.style.setProperty('--oh-clip-bottom', `${Math.max(0, height - rect.bottom)}px`);
+          el.style.setProperty('--oh-shade', String(Math.min(1, Math.max(0, (height * .55 - rect.top) / (height * .55)))));
+        }
       });
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };

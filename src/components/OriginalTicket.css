@@ -1,0 +1,35 @@
+.original-ticket{width:100%;overflow:hidden;height:227px}
+.original-ticket-canvas{width:768px;height:256px;transform:scale(var(--ticket-scale,1));transform-origin:top left;font-family:ui-sans-serif,system-ui,sans-serif;font-size:16px;line-height:1.5;text-align:left;color:#fafafa}
+.original-ticket-canvas *{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+.original-ticket-canvas svg{display:block;vertical-align:middle;flex-shrink:1}
+.original-ticket-canvas .flex{display:flex}.original-ticket-canvas .flex-col{flex-direction:column}.original-ticket-canvas .flex-grow{flex-grow:1}
+.original-ticket-canvas .items-center{align-items:center}.original-ticket-canvas .justify-center{justify-content:center}.original-ticket-canvas .justify-between{justify-content:space-between}
+.original-ticket-canvas .relative{position:relative}.original-ticket-canvas .absolute{position:absolute}
+.original-ticket-canvas .w-full{width:100%}.original-ticket-canvas .max-w-3xl{max-width:768px}.original-ticket-canvas .h-64{height:256px}.original-ticket-canvas .h-full{height:100%}
+.original-ticket-canvas .w-8{width:32px}.original-ticket-canvas .h-8{height:32px}.original-ticket-canvas .w-3{width:12px}.original-ticket-canvas .h-3{height:12px}.original-ticket-canvas .w-5{width:20px}.original-ticket-canvas .h-5{height:20px}.original-ticket-canvas .h-px{height:1px}
+.original-ticket-canvas .px-8{padding-left:32px;padding-right:32px}.original-ticket-canvas .px-10{padding-left:40px;padding-right:40px}.original-ticket-canvas .py-8{padding-top:32px;padding-bottom:32px}.original-ticket-canvas .px-3{padding-left:12px;padding-right:12px}.original-ticket-canvas .mx-2{margin-left:8px;margin-right:8px}.original-ticket-canvas .mt-2{margin-top:8px}.original-ticket-canvas .mt-auto{margin-top:auto}
+.original-ticket-canvas .bg-zinc-900{background:#18181b}.original-ticket-canvas .bg-zinc-200{background:#e4e4e7}.original-ticket-canvas .bg-lime-400{background:#a3e635}
+.original-ticket-canvas .text-zinc-50{color:#fafafa}.original-ticket-canvas .text-zinc-500{color:#71717a}.original-ticket-canvas .text-zinc-400{color:#a1a1aa}.original-ticket-canvas .text-zinc-900{color:#18181b}
+.original-ticket-canvas .border-2{border-width:2px}.original-ticket-canvas .border-t-2{border-top-width:2px}.original-ticket-canvas .border-dashed{border-style:dashed}.original-ticket-canvas .border-dotted{border-style:dotted}.original-ticket-canvas .border-zinc-50{border-color:#fafafa}.original-ticket-canvas .border-zinc-900{border-color:#18181b}.original-ticket-canvas .border-zinc-400{border-color:#a1a1aa}
+.original-ticket-canvas .rounded-full{border-radius:9999px}.original-ticket-canvas .rounded-l-3xl{border-radius:24px 0 0 24px}.original-ticket-canvas .rounded-r-3xl{border-radius:0 24px 24px 0}.original-ticket-canvas .-top-5{top:-20px}.original-ticket-canvas .-bottom-5{bottom:-20px}
+.original-ticket-canvas .text-4xl{font-size:36px;line-height:40px}.original-ticket-canvas .text-sm{font-size:14px;line-height:20px}.original-ticket-canvas .text-xs{font-size:12px;line-height:16px}.original-ticket-canvas .font-bold{font-weight:700}.original-ticket-canvas .font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace}
+
+/* Real transparent perforations reveal the page/backdrop underneath. */
+.original-ticket-canvas>div{mask-image:radial-gradient(circle 16px at 206px -4px,transparent 98%,#000 100%),radial-gradient(circle 16px at 206px calc(100% + 4px),transparent 98%,#000 100%);mask-composite:intersect;-webkit-mask-image:radial-gradient(circle 16px at 206px -4px,transparent 98%,#000 100%),radial-gradient(circle 16px at 206px calc(100% + 4px),transparent 98%,#000 100%);-webkit-mask-composite:source-in}
+
+/* CMC typography and palette; preserve the original ticket geometry. */
+.original-ticket-canvas{font-family:Haffer,Arial,sans-serif;color:var(--cream)}
+.original-ticket-canvas .font-mono{font-family:inherit;font-variant-numeric:tabular-nums}
+.original-ticket-canvas .font-bold{font-weight:500;letter-spacing:-.035em}
+.original-ticket-canvas .bg-zinc-900{background:var(--ink)}
+.original-ticket-canvas .bg-lime-400{background:var(--cream)}
+.original-ticket-canvas .text-zinc-50{color:var(--cream)}
+.original-ticket-canvas .text-zinc-900{color:var(--ink)}
+.original-ticket-canvas .text-zinc-500,.original-ticket-canvas .text-zinc-400{color:#c7c3b9}
+.original-ticket-canvas .border-zinc-50{border-color:var(--cream)}
+.original-ticket-canvas .border-zinc-900{border-color:var(--ink)}
+.original-ticket-canvas .border-zinc-400{border-color:#c7c3b9}
+
+.original-ticket-canvas{height:208px}
+.original-ticket-canvas .h-64{height:208px}
+.original-ticket-canvas .py-8{padding-top:22px;padding-bottom:22px}

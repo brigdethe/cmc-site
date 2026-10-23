@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import './MenuTicket.css';
+import './MenuCards.css';
+import OriginalTicket from './OriginalTicket.jsx';
 
 export function Arrow({ className='' }) { return <span className={`arrow ${className}`} aria-hidden="true">→</span>; }
 
@@ -9,7 +12,7 @@ function Clock() {
   return <time className="clock" dateTime={time.toISOString()} title="Accra, Ghana" aria-label={`${parts.join(':')} in Accra, Ghana`}><span>{parts[0]}</span><b>:</b><span>{parts[1]}</span><strong>ACCRA</strong></time>;
 }
 
-const links=[['Approach','#approach'],['Services','#services'],['People','#people'],['Projects','#projects'],['Vision & Values','#vision'],['Our Home','#our-space'],['Journal','#journal']];
+const links=[['Approach','#approach'],['Services','#services'],['People','#people'],['Projects','#projects']];
 
 export default function Header({ ready, loading, onContact, onMenuChange }) {
   const [open,setOpen]=useState(false);
@@ -35,17 +38,22 @@ export default function Header({ ready, loading, onContact, onMenuChange }) {
   return <>
     <header className={`site-header ${ready?'is-ready':''} ${open?'menu-is-open':''}`} inert={loading}>
       <Clock/>
-      <div className={`navigation ${open?'is-open':''}`} ref={panel} onKeyDown={keys} role={open?'dialog':undefined} aria-modal={open?'true':undefined} aria-label={open?'Main navigation':undefined}>
+      <div className={`navigation-shell ${open?'is-open':''}`} ref={panel} onKeyDown={keys} role={open?'dialog':undefined} aria-modal={open?'true':undefined} aria-label={open?'Main navigation':undefined}>
+      <div className={`navigation ${open?'is-open':''}`}>
         <div className="navigation-bar"><a className="wordmark" href="#home" onClick={close} aria-label="CMC home">cmc<img src="/branding/cmc-round-logo.svg" alt="" width="25" height="25"/></a><button className="menu-toggle" ref={toggle} onClick={()=>open?close():setOpen(true)} aria-expanded={open} aria-controls="main-navigation" aria-label={open?'Close menu':'Open menu'}><span/><span/></button></div>
         <div className="navigation-content" id="main-navigation" inert={!open} aria-hidden={!open}>
           <nav>{links.map(([label,href])=><a key={label} href={href} onClick={e=>{e.preventDefault();close();document.querySelector(href)?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}}>{label}<span aria-hidden="true">↗</span></a>)}</nav>
-          <div className="latest-heading"><span>● Lately in the studio</span><div><button aria-label="Previous story" onClick={()=>strip.current?.scrollBy({left:-250,behavior:'smooth'})}>←</button><button aria-label="Next story" onClick={()=>strip.current?.scrollBy({left:250,behavior:'smooth'})}>→</button></div></div>
+          <div className="latest-heading"><span>● Explore CMC</span><div><button aria-label="Previous story" onClick={()=>strip.current?.scrollBy({left:-250,behavior:'smooth'})}>←</button><button aria-label="Next story" onClick={()=>strip.current?.scrollBy({left:250,behavior:'smooth'})}>→</button></div></div>
           <div className="latest-strip" ref={strip}>
-            <a href="#projects" className="story story-mint" onClick={close}><span><i>New perspectives</i><br/>Lorem ipsum dolor<Arrow/></span><img src="/media/hero.jpg" alt="Sunlit studio lounge"/></a>
-            <a href="#journal" className="story story-forest" onClick={close}><span><i>In the making</i><br/>Sit amet consectetur<Arrow/></span><img src="/media/hero.jpg" alt="Warm architectural interior"/></a>
-            <button className="story story-ochre" onClick={()=>{close();onContact();}}><span><i>Something in mind?</i><br/>Start a conversation<Arrow/></span><span className="story-number" aria-hidden="true">↗</span></button>
+            <a href="https://seminar.cmc-ghana.com/" target="_blank" rel="noopener noreferrer" className="story story-mint" onClick={close}><span>Explore<br/>the seminar<Arrow/></span><img src="https://ik.imagekit.io/dr5fryhth/conference/Accra_xxxxxxxxx_i116585_13by5.webp?updatedAt=1771048872912" alt="Accra, Ghana"/></a>
+            <a href="#our-space" className="story story-forest" onClick={e=>{e.preventDefault();close();document.getElementById('our-space')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}}><span>Leadership<br/>and expertise<Arrow/></span><img src="https://ik.imagekit.io/dr5fryhth/creep.jpeg?updatedAt=1771705355007" alt="Paul Kofi Datsa"/></a>
+            <div className="story story-ochre" aria-label="Second edition coming soon"><span><i>Second edition</i><br/>Coming soon</span></div>
           </div>
         </div>
+      </div>
+      <div className="menu-ticket-slot" inert={!open} aria-hidden={!open}>
+        <OriginalTicket/>
+      </div>
       </div>
       <button className="contact-trigger" onClick={()=>{if(open)close();onContact();}}><span>Let’s talk</span><Arrow/></button>
     </header>

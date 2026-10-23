@@ -5,6 +5,9 @@ import Hero from './components/Hero.jsx';
 import ProcessSection from './components/ProcessSection.jsx';
 import ContactDrawer from './components/ContactDrawer.jsx';
 import OurHomeSections from './components/OurHomeSections.jsx';
+import Prefooter from './components/Prefooter.jsx';
+import Footer from './components/Footer.jsx';
+import SeminarInvitation from './components/SeminarInvitation.jsx';
 
 export default function App(){
   const [ready,setReady]=useState(false),[loading,setLoading]=useState(true),[contact,setContact]=useState(false),[menu,setMenu]=useState(false);
@@ -34,11 +37,13 @@ export default function App(){
     <Header ready={ready} loading={loading} onContact={openContact} onMenuChange={setMenu}/>
     <main id="main" className="page-main" inert={loading||menu||contact}>
       <Hero ready={ready}/>
+      <section className="intro-section" id="services" data-home-scheme="dark"><h2>About Competition<br/>&amp; Markets Center.</h2><div><p>Competition &amp; Markets Center is an Accra-based firm focused on competition economics, law and policy. We bring together regulators, policymakers, legal practitioners and businesses to examine how markets work and how competition frameworks can serve Ghana’s needs.</p><p>Through research, education and stakeholder dialogue, we explore the institutions, rules and enforcement approaches that support fair competition. Our work connects economic thinking with legal and policy questions, creating space for informed exchange as Ghana develops its competition framework.</p><a className="text-link" href="https://seminar.cmc-ghana.com/" target="_blank" rel="noopener noreferrer"><span className="link-label">Explore the seminar</span><Arrow/></a></div></section>
       <ProcessSection/>
-      <section className="intro-section" id="services"><h2>Lorem ipsum.<br/>Dolor sit amet.</h2><div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p><button className="text-link" onClick={openContact}>Let’s make something<Arrow/></button></div></section>
-      <OurHomeSections/>
+      <OurHomeSections onContact={openContact}/>
       <div className="anchor-markers" aria-hidden="true"><span id="people"/><span id="projects"/><span id="vision"/><span id="journal"/></div>
-      <footer><a className="footer-brand" href="#home">cmc<img src="/branding/cmc-round-logo.svg" alt="CMC" width="28" height="28"/></a><span>An independent studio concept.</span><button className="text-link" onClick={openContact}>Let’s talk<Arrow/></button></footer>
+      <SeminarInvitation onContact={openContact}/>
+      <Prefooter onContact={openContact}/>
+      <Footer onContact={openContact}/>
     </main>
     <ContactDrawer open={contact} onClose={closeContact}/>
   </>;

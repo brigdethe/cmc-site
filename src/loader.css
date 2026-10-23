@@ -229,3 +229,9 @@
     display: none !important;
   }
 }
+
+@media (max-width: 767px) {
+  .willem__stack {
+    font-size: clamp(1.8rem, 7.2vw, 2.7rem);
+  }
+}

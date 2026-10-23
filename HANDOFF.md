@@ -100,3 +100,121 @@ Visual check after correction: image top remained exactly0 at two scroll positio
 
 ## Loader desktop gutter + first-frame logo correction
 First loader shutter frame now uses /branding/cmc-round-logo.svg, object-fit:contain on cream; remaining shutters and final poster retained. Desktop landing previously mixed100vw/window.innerWidth (includes reserved gutter) with hero width excluding that gutter. Preloader overlay now width100%; GSAP landing dimensions use hero media offsetWidth/offsetHeight and transformed rect center, cached at expansion start. Preserve overscan scale on the image itself; do not measure transformed width as layout width or overscan gets applied twice. Center stack and outgoing text expansion use the same measured target. Mobile timings/sequence unchanged.
+
+## Standalone feature image removed
+User approved removal of the annotated .oh-feature-image block and its spacing. Removed JSX and unused desktop/mobile CSS. Opening fixed image, gallery, and shared hero.jpg remain. Reviewed scoped diff; no test suites run for this simple deletion.
+
+## Process image transition correction
+User approved changing only process image motion to follow the ESG reference. Replaced crop-only desktop changes with continuously scroll-driven image frames: outgoing main shrinks at top left, next preview moves/grows into main, following preview grows from bottom right. Geometry measures existing main/small slots; layout, copy, imagery, loader remain intact. Independent React/DOM implementation, no reference bundles. Production build passed. Targeted browser check confirmed intermediate frames (main271x262, incoming368x346, next104x91) instead of crop panning. Screenshot outputs/process-transition-update.png in chat output directory. Prior request to reduce Our Space heading padding still awaits its own approval; not applied.
+
+## Mobile Our Space stability correction
+Approved mobile-only fix: intro image uses an absolute section-contained background with no viewport clip-path or visibility toggling. Scene height now follows text content with min-height100svh and upper image breathing room; copy is in normal flow so next editorial cannot cover its bottom. Mobile intro words remain fully visible and shade stays constant to prevent scroll-direction flashing. Desktop fixed-image clipping remains unchanged. Earlier Our Space heading padding request remains pending approval.
+
+## Mobile reveal restored after regression
+Supersedes static-background correction above. User approved restoring scroll animation and requested actual mobile checks. Restored fixed image/clipping, progressive shade and word reveal. Kept content-driven scene sizing and normal-flow copy to avoid overlap. Mobile image uses stable100lvh; clip bottom now measures the actual image viewport bottom rather than mixing innerHeight and svh. Playwright via installed Chrome at390x844 checked enter/down/exit/up: image top stayed0, clip at the same down/up offset matched exactly, copy bottom stayed160px above section bottom, no page errors. Reviewed mobile-reveal-down.png visually. New request to enlarge mobile preloader is awaiting approval; current font clamps to19.2px at390px screen width.
+
+## Mobile loader scale increased
+User approved mobile-only sizing change. loader.css max-width767px overrides stack font-size to clamp(1.8rem,7.2vw,2.7rem). At390px text is28.8px, up from19.2px; central photo uses em units and scales proportionally. Desktop and timeline untouched. Playwright mobile capture verified28.8px and188px stack width within390px viewport; screenshot mobile-loader-larger.png saved outside repo.
+
+## CMC prefooter card implemented
+Approved plan implemented in Prefooter.jsx / Prefooter.css, inserted in App.jsx immediately before existing footer. Reusable onContact prop opens existing ContactDrawer. Wide dark teal gradient card, original inline SVG contour curves, Haffer heading, cream pill with existing Arrow, CMC caption and Accra location. No reference assets/dependencies. Desktop min580px with32px side margins; mobile min500px content-driven with20px margins. IntersectionObserver triggers opacity once; reduced-motion renders immediately. data-home-scheme light integrates existing header color switching.
+Validation: production build passed. Playwright Chrome checked1440x950 and390x844, plus shorter1440x700 and390x600 to exercise header over card. No horizontal overflow or page errors; contact drawer opened/closed at both widths. Header ink becomes cream when dark section reaches header. Desktop/mobile screenshots reviewed; saved outside repo in chat outputs/prefooter-desktop.png and prefooter-mobile.png. Existing user changes and untracked AGENTS.md retained; no commit/push performed.
+
+## Prefooter palette/button integration correction
+User approved cream surround + charcoal card, subtle cream contours, existing underlined text-and-arrow CTA; also requested scrolling sync with neighbors. Removed teal gradients, large pill styling and independent timed entrance fade. Card stays in normal document flow with no pinning/transforms/opacity delays, so it follows neighboring sections directly in both scroll directions. Header scheme is dark for cream surround and light for card itself. Existing text-link and Arrow styles reused with inverse colors. Build passed. Playwright Chrome1440x900 and390x844 checked down/up scroll: identical rects on returning to same position, footer top exactly equals prefooter bottom, opacity1, no horizontal overflow/page errors; drawer open/close passed. Screenshots prefooter-matched-desktop.png and prefooter-matched-mobile.png reviewed visually outside repo. Existing user changes retained.
+
+## Lightweight contour motion
+Approved slow drift: entire SVG animates as one layer with a28s alternating CSS transform, no path morphing/dependencies. IntersectionObserver pauses offscreen; reduced-motion removes animation. Build passed. Targeted mobile browser check confirmed transform changes while visible, paused offscreen, animation-name none for reduced motion. No layout animation or change to neighboring section scrolling.
+
+Contour speed follow-up approved:12s alternating drift, travel ±3% horizontal/±2% vertical, scale1.12 preserves edge coverage. Offscreen pause and reduced-motion unchanged.
+
+Contour roll approved: replaced drift with continuous20s linear360-degree SVG rotation at scale1.5, clipped by card. Text/button stay still; offscreen pause and reduced-motion retained.
+
+Sideways roll correction: user clarified translation, not rotation. SVG now contains two matching periodic wave tiles;200% width translates0 to-50% over20s with identical curve positions/tangents at wrap. No spin. Offscreen/reduced-motion unchanged.
+
+User requested revert of sideways roll: restored previous original contour geometry and20s rotation; other prefooter styling unchanged.
+
+User requested removing rotation: contours are now static. Removed contour animation/keyframes and unused visibility observer. Card design and contact behavior retained.
+
+## Full footer approved and implemented
+Replaced minimal footer with Footer.jsx/Footer.css, onContact prop uses existing drawer. Cream/charcoal, large cmc+round logo, full organization name, Explore links to real sections only (home/approach/process/services/our-space), Accra location, contact CTA, current-year copyright and back-to-top. Responsive three-column desktop and stacked identity/two-column navigation mobile. data-home-scheme dark keeps header legible. No fabricated social/email/address/legal links. Production build passed; Playwright1440x900 and390x844 screenshots reviewed, no overflow/page errors, every anchor target exists, contact opens/closes, back-to-top returns scrollY0. Screenshots footer-desktop.png/footer-mobile.png outside repo. No commit or push.
+
+Footer integration approved: removed footer top divider and prefooter bottom padding; footer content begins40px after card on desktop/32px mobile. Cream background shared, card and footer read together. Copyright row divider retained.
+
+Footer logo optical alignment approved: round emblem lowered.08em relative to the Haffer wordmark line box. Visually reviewed1440px desktop and390px mobile screenshots; emblem now centers against visible lowercase letter shapes. Targeted footer browser checks passed.
+
+Mobile footer compact layout approved: brand and Explore now share two columns; Find us / Accra Ghana / contact CTA share one full-width horizontal row. Proportional smaller mobile wordmark/emblem; desktop untouched.390px visual screenshot reviewed, no overflow, anchor targets/contact drawer/back-to-top checks passed on mobile and desktop.
+
+User corrected viewport-fit approach: preserve original prefooter card size. Removed compact-card override, restoring580px desktop/500px mobile minimum height, original padding and heading sizes. Compact footer spacing retained. Combined viewport fit is subordinate to preserving card size; allow natural scrolling on small screens.
+
+Approved section order change: Hero, intro/services text, ProcessSection, OurHomeSections, combined footer. Swapped second and third sections only.
+
+Approved content-only hero update: heading is now Shaping fairer, / more competitive markets for Ghana. Existing spans, CSS, assets and animation unchanged.
+
+Hero line-break correction requested: Shaping fairer, / more competitive / markets for Ghana. Three spans; no styling changes.
+
+Approved hero supporting paragraph now describes CMC bringing economics, law and policy together to deepen competition understanding and support fairer, more effective Ghanaian markets. Content-only replacement; layout/link unchanged.
+
+Approved hero cue replacement: Ghana Competition Law & Policy Seminar links to https://seminar.cmc-ghana.com/ in a new tab with noopener noreferrer. Label and href only; existing cue styling retained. Destination verified against CMCMain src/events/index.html.
+
+Approved intro content: Understanding competition. / Shaping better markets. Two paragraphs explain Accra-based CMC focus, audience, research/education/dialogue and Ghana context. About CMC links to existing cmc-ghana.com/about/ in new tab. Content/link changes only.
+
+User-directed intro correction: heading About Competition & Markets Center (official singular name), right CTA Explore the seminar -> https://seminar.cmc-ghana.com/. Paragraphs/layout unchanged.
+
+Approved Leadership & Expertise section replaces process lorem with4 CMCMain profiles: Paul Kofi Datsa (Managing Director), Juliette Twumasi-Anokye (guest speaker), Peter Alexiadis (keynote/visiting professor), David Bailey KC (session lead). Local webp portraits copied from CMCMain. Bio/details from donor About page; contributors not called executives. Layout/image morph retained; counter04 and scroll height340svh match4 profiles. Build passed; desktop/mobile checked next profile, read more and no broken portraits. Screenshots leadership-desktop/mobile.png outside repo.
+
+User supplied replacement ImageKit portrait URLs for Datsa (creep.jpeg) and Juliette (eleanor); imageUrl overrides applied to desktop animated frames and mobile image. Other portraits/layout unchanged.
+
+Approved full-bio display: removed Read more button and expanded state from leadership; copy and more paragraphs are always visible for all4 profiles. Existing layout/transitions retained.
+
+Approved seminar opening: Ghana Competition Law & Policy Seminar label; Laying a sound foundation. / For a new era. heading;25March2026 context paragraph; supplied ImageKit105938 screenshot. Opening content/image only; scroll effects retained.
+
+Approved mobile leadership refinements: portrait height48svh (was37), full second bio paragraph collapsed behind44px Read more button on mobile only; reset collapse on profile change. Desktop always shows both paragraphs and hides toggle. Touch pointer swipe on grid uses50px threshold and horizontal dominance1.5x; touch-action pan-y pinch-zoom preserves vertical scroll/zoom; no looping beyond ends. Build passed. Actual CDP touch gestures at390x844 verified left/right profiles, expanded bio/collapse reset, vertical scroll without profile change, desktop full bio/no toggle. Screenshot leadership-mobile-swipe.png reviewed.
+
+Mobile leadership arrows moved into process-side alongside01/04 counter. Bottom controls hidden only on mobile; desktop controls/swipe unchanged.
+
+Approved seminar editorial copy: A forum for informed debate. plus first-edition themes paragraph. RSVP for next seminar opens existing contact pane via onContact passed to OurHomeSections; no registration backend or dates invented.
+
+Approved order swap: seminar editorial, quote/statistics block, gallery, remaining Aenean editorial. Content and gallery position preserved.
+
+Approved merged seminar editorial and statistics: heading left; seminar description, RSVP contact-pane trigger and animated102attendees/23law firms/5speakers/1inaugural edition right. Removed separate quote/attribution placeholder section. Counter observer still targets oh-stats. Numbers from CMCMain seminar recap.
+
+Carousel images replaced with5 user-supplied ImageKit seminar URLs in given order. Counter and next-button bound derive from galleryImages length. Existing layout, drag/swipe and motion preserved.
+
+Added user-supplied110028 ImageKit screenshot as sixth carousel slide; count updates automatically.
+
+User requested seminar photos for middle preloader frames. Replaced loader2/3 with ImageKit110007 and110128 respectively; first CMC logo and final hero110118 untouched. Timing/controller unchanged.
+
+Approved NEW prefooter section SeminarInvitation before existing combined footer; existing card/footer untouched. Static full-width seminar photo with right charcoal panel desktop; stacked photo/panel mobile. Original CMC heading, explicitly labelled invented placeholder testimonial (replace before publishing), contact-pane CTA. No pin/scroll effects or copied Thirdway assets. Build passed; desktop/mobile no overflow/image decode/contact verified, screenshot seminar-invitation-desktop/mobile.png outside repo.
+
+Approved company-content correction: image panel now Expertise across economics, law and policy. Company perspective paragraph + Talk to CMC; removed invented seminar testimonial/attribution. Image retained. Remaining lorem editorial now Ghanaian context. Broader perspectives. with CMC approach copy. No layout/motion changes.
+
+User-supplied prefooter image replaced in SeminarInvitation with conferencenew/giammarco-boscaro-zeH-ljawHtg-unsplash.jpg ImageKit URL. Company copy, footer card, layout and interactions untouched.
+
+Loader timing approved50% shorter: GSAP timeline timeScale2 preserves all relative transitions/callbacks and hero handoff. Asset decoding wait and watchdog unchanged.
+
+Loader timing revised by user:20% shorter than original, timeScale1.25 (replaces2).
+
+Approved navbar content: first4 links only (Approach Services People Projects). Explore CMC cards: seminar external URL+Accra image, leadership Datsa image->our-space seminar section per explicit user request, competition-law Supreme Court image inactive Coming soon. Existing menu/strip styling and animation preserved.
+
+Navbar follow-up: no image in right Competition Law placeholder card; left/middle images retained.
+
+Approved navbar ticket: independent MenuTicket CSS + sibling article below navigation panel, same shell width and12px gap. CMC cream/charcoal seminar ticket, next edition TBA, RSVP opens contact pane; no fake QR/registration. Shared shell scrolls on short screens; focus trap covers menu+ticket; hidden/inert closed. Existing menu expand width retained. Build passed. Browser desktop/mobile confirmed equal680/354px widths,12px gap, no overflow and RSVP contact opens. Screenshot menu-ticket-desktop/mobile.png outside repo. Ticket design independently implemented; donor source not copied.
+
+User requested exact original ticket look: replaced custom CMC ticket with first original airline-ticket HTML/SVG from ticket/src/index.html. Original BNE/ATH,RS11,date,passenger,QR retained. Scoped local Tailwind-equivalent CSS avoids CDN; scales768x256 artwork uniformly to menu width. MIT notice copied to public/ticket-LICENSE.txt. Existing12px gap/placement preserved. Build and desktop/mobile width/no-overflow checks passed; screenshot reviewed. No RSVP on original static ticket.
+
+Approved ticket edits: genuine transparent masked notches,01 Mar2025 /02 Mar2027, CMC Seminar, no plane, live days since25March2026 (UTC/Accra; refresh minute), Date25/03/2026, Location Accra Gh, Attendee You, Role Your role. Original QR and style retained. Build and desktop/mobile equal width12px gap/no overflow checks passed. PrintedMar2025 left label intentionally follows explicit user request despite2026 counter origin.
+
+Approved navbar stories: first2 images now fill cards behind text, no framing/border/round mask, gradient overlay for contrast; right remains text-only. User sc follow-up reduces menu-ticket gap12->6px.
+
+Latest ticket follow-up:25 replaces01,DD replaces02; artwork height256->208 with reduced inner vertical padding. Cream/charcoal Haffer retained. Navbar image overrides moved into explicit MenuCards.css import to resolve stale dev style delivery; full-card image checks required.
+
+Completion pass verified: ticket uses Haffer, cream/charcoal (QR palette matched), no monospace/lime; updated25/DD and reduced height. Navbar full-bleed photos now confirmed in real desktop screenshot, right card text-only. Desktop/mobile widths680/354px match menu;6px gap; no overflow. Final build passed. No commit/push performed.
+
+Navbar left card label updated per user: Explore / the seminar; removed Ghana competition prefix. Image/link/layout unchanged.
+
+Navbar right text-only card now Second edition / Coming soon, including accessible label.
+
+Approved CMC gold accents added via cmc-accents.css loaded after base styles: canonical#CC9632 arrow capsules/menu toggle/right story/current leadership counter/dividers/ticket badge and perforation/dark captions. Darker#946014 used for readable gold stats and small text on cream. Main surfaces/headings untouched. Middle nav card now Leadership / and expertise. Build passed; desktop/mobile menu screenshots and equal widths6px gap/no overflow checked.
+
+User styling follow-up: text-link labels wrapped separately so only words are underlined, never Arrow pseudo-elements. Footer card contour SVG now CMC gold#CC9632 at16% opacity; static motion retained.

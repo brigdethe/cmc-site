@@ -47,13 +47,13 @@ export default function Preloader({ onReveal, onComplete }) {
                     />
                     <img
                       className="willem__cover-image-extra is--2"
-                      src="/images/loader-2.jpg"
+                      src="https://ik.imagekit.io/dr5fryhth/Screenshots/Screenshot%202026-04-10%20110007.png?updatedAt=1775838071009"
                       alt=""
                       loading="eager"
                     />
                     <img
                       className="willem__cover-image-extra is--3"
-                      src="/images/loader-3.jpg"
+                      src="https://ik.imagekit.io/dr5fryhth/Screenshots/Screenshot%202026-04-10%20110128.png?updatedAt=1775838070633"
                       alt=""
                       loading="eager"
                     />

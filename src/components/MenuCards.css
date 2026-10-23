@@ -1,0 +1,4 @@
+.latest-strip .story-mint,.latest-strip .story-forest{isolation:isolate;color:var(--cream);border:0}
+.latest-strip .story-mint img,.latest-strip .story-forest img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;border-radius:0;z-index:-2}
+.latest-strip .story-mint:after,.latest-strip .story-forest:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#151711c9,transparent 90%);pointer-events:none}
+.latest-strip .story-forest img{object-position:50% 30%}

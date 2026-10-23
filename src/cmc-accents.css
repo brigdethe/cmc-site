@@ -1,0 +1,21 @@
+:root{--cmc-gold:#cc9632;--cmc-gold-text:#946014}
+/* Small recurring brand details, preserving the cream and charcoal surfaces. */
+.text-link .arrow,.contact-trigger .arrow,.process-read>span{background:var(--cmc-gold);color:var(--ink)}
+.text-link .arrow:after,.contact-trigger .arrow:after{color:var(--ink)}
+.menu-toggle{background:var(--cmc-gold);color:var(--ink)}
+.navigation-content nav>a:hover,.navigation-content nav>a:focus-visible{color:var(--cmc-gold-text)}
+.latest-strip .story-ochre{background:var(--cmc-gold);color:var(--ink)}
+.process-counter .digit-pill:first-child{background:var(--cmc-gold);border-color:var(--cmc-gold);color:var(--ink)}
+.process-detail{border-left-color:var(--cmc-gold)}
+.oh-stat-number{color:var(--cmc-gold-text)}
+.oh-stats>div{border-top-color:var(--cmc-gold)}
+.original-ticket-canvas .bg-lime-400{background:var(--cmc-gold)}
+.original-ticket-canvas .border-zinc-50{border-color:var(--cmc-gold)}
+.cmc-invitation-captions,.seminar-invitation-meta{color:var(--cmc-gold)}
+.cmc-footer-label{color:var(--cmc-gold-text)}
+@media(max-width:767px){.process-detail{border-top-color:var(--cmc-gold)}}
+
+.text-link{text-decoration:none}
+.text-link .link-label{text-decoration:underline;text-underline-offset:4px}
+.text-link .arrow,.text-link .arrow:after{text-decoration:none}
+.cmc-invitation-contours{stroke:var(--cmc-gold);opacity:.16}

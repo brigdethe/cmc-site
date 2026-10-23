@@ -101,21 +101,20 @@ export default function Hero({
       </div>
       <div className="hero-first">
         <h1>
-          <span>Lorem ipsum dolor.</span>
-          <span>Consectetur adipiscing.</span>
+          <span>Shaping fairer,</span>
+          <span>more competitive</span>
+          <span>markets for Ghana.</span>
         </h1>
-        <a className="scroll-cue" href="#approach">
-          Scroll<span aria-hidden="true">↓</span>
+        <a className="scroll-cue" href="https://seminar.cmc-ghana.com/" target="_blank" rel="noopener noreferrer">
+          Ghana Competition Law &amp; Policy Seminar<span aria-hidden="true">↗</span>
         </a>
       </div>
       <div className="hero-second" id="approach">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam.
+          CMC brings together economics, law and policy to deepen understanding of competition and support fairer, more effective markets in Ghana.
         </p>
-        <a className="text-link" href="#services">
-          Our approach<Arrow />
+        <a className="text-link" href="#services"><span className="link-label">
+          Our approach</span><Arrow />
         </a>
       </div>
     </section>

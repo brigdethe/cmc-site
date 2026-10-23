@@ -64,6 +64,9 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
         }
       });
 
+      // Shorten the complete sequence by 20%, preserving relative timing.
+      tl.timeScale(1.25);
+
       // 1. Letters entrance
       if (loadingLetter.length) {
         tl.from(loadingLetter, {

@@ -4,6 +4,7 @@ import Header, { Arrow } from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import ProcessSection from './components/ProcessSection.jsx';
 import ContactDrawer from './components/ContactDrawer.jsx';
+import OurHomeSections from './components/OurHomeSections.jsx';
 
 export default function App(){
   const [ready,setReady]=useState(false),[loading,setLoading]=useState(true),[contact,setContact]=useState(false),[menu,setMenu]=useState(false);
@@ -14,7 +15,11 @@ export default function App(){
       frame=0;
       const root=document.documentElement;
       const section=document.getElementById('process');
-      const dark=section?.getBoundingClientRect().top<=64;
+      let dark=section?.getBoundingClientRect().top<=64;
+      document.querySelectorAll('[data-home-scheme]').forEach(block=>{
+        const rect=block.getBoundingClientRect();
+        if(rect.top<=64&&rect.bottom>64)dark=block.dataset.homeScheme==='dark';
+      });
       root.style.setProperty('--header-ink',dark?'#22231d':'#f7f1e9');
       root.style.setProperty('--header-arrow-ink',dark?'#f7f1e9':'#22231d');
       root.style.setProperty('--hero-scroll',String(Math.min(scrollY/innerHeight,1)));
@@ -31,6 +36,7 @@ export default function App(){
       <Hero ready={ready}/>
       <ProcessSection/>
       <section className="intro-section" id="services"><h2>Lorem ipsum.<br/>Dolor sit amet.</h2><div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p><button className="text-link" onClick={openContact}>Let’s make something<Arrow/></button></div></section>
+      <OurHomeSections/>
       <div className="anchor-markers" aria-hidden="true"><span id="people"/><span id="projects"/><span id="vision"/><span id="journal"/></div>
       <footer><a className="footer-brand" href="#home">cmc<img src="/branding/cmc-round-logo.svg" alt="CMC" width="28" height="28"/></a><span>An independent studio concept.</span><button className="text-link" onClick={openContact}>Let’s talk<Arrow/></button></footer>
     </main>

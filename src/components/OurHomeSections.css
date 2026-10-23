@@ -1,0 +1,48 @@
+.our-home-sections{position:relative;z-index:3;isolation:isolate;background:var(--cream);color:var(--ink);--oh-edge:32px;scroll-margin-top:0}
+.oh-heading{padding:clamp(144px,15.5vw,244px) var(--oh-edge) 56px}
+.oh-heading>p{margin:0 0 24px;font-size:18px;line-height:1;letter-spacing:-.035em}
+.oh-heading h2{margin:0;font-size:clamp(52px,5.85vw,112px);line-height:.91;letter-spacing:-.065em;font-weight:400}
+.oh-intro-scene{position:relative;height:100svh;min-height:600px;overflow:clip;color:var(--cream)}
+.oh-intro-media{position:absolute;inset:0;overflow:hidden}
+.oh-intro-media>img{width:100%;height:112%;object-fit:cover;object-position:50% 50%;transform:translateY(calc(-6% + var(--oh-parallax,0%)));will-change:transform;display:block}
+.oh-intro-shade{position:absolute;inset:0;background:#171b175c}
+.oh-intro-copy{position:absolute;top:51%;left:50%;right:var(--oh-edge);padding-bottom:64px}
+.oh-intro-copy p{font-size:clamp(25px,2.15vw,38px);line-height:1.03;letter-spacing:-.05em;margin:0}
+.oh-reveal>span{opacity:clamp(.17,calc((var(--reveal,0)*var(--word-count) - var(--word-index))*.85),1);transition:opacity .12s linear}
+.oh-editorial{padding:100px var(--oh-edge);display:grid;grid-template-columns:repeat(24,minmax(0,1fr));gap:16px;min-height:340px}
+.oh-editorial h2{grid-column:1/10;font-size:clamp(26px,2.1vw,36px);font-weight:400;line-height:1.03;letter-spacing:-.055em;margin:0}
+.oh-editorial>p{grid-column:13/25;font-size:20px;line-height:1.16;letter-spacing:-.035em;margin:0}
+.oh-editorial-wide>p{grid-column:10/25}
+.oh-feature-image{padding:50px 16px;background:var(--cream)}
+.oh-feature-image>div{aspect-ratio:16/9;overflow:hidden;border-radius:2px}
+.oh-feature-image img{display:block;width:100%;height:110%;object-fit:cover;object-position:50% 55%;transform:translateY(calc(-5% + var(--oh-parallax,0%)));will-change:transform}
+.oh-gallery{padding:50px 0;background:var(--cream);overflow:hidden}
+.oh-gallery-viewport{position:relative;display:flex;gap:16px;padding:0 16px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;touch-action:pan-x pan-y;cursor:none}
+.oh-gallery-viewport::-webkit-scrollbar{display:none}
+.oh-gallery-viewport[data-dragging]{scroll-snap-type:none;user-select:none}
+.oh-gallery figure{margin:0;flex:0 0 82vw;aspect-ratio:1.55;overflow:hidden;border-radius:2px;scroll-snap-align:start}
+.oh-gallery img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
+.oh-gallery-cursor{position:absolute;left:0;top:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .15s;background:var(--cream);color:var(--ink);border-radius:50%;width:72px;height:72px;display:grid;place-items:center;font-size:15px;letter-spacing:-.02em}
+.oh-gallery-cursor:after{content:attr(data-label)}
+.oh-gallery-viewport:hover .oh-gallery-cursor{opacity:1}
+.oh-gallery-viewport[data-dragging] .oh-gallery-cursor{opacity:0}
+.oh-gallery-controls{display:flex;justify-content:space-between;align-items:center;padding:18px 32px 0;font-size:13px;letter-spacing:-.025em}
+.oh-gallery-controls>div{display:flex;gap:8px}
+.oh-gallery-controls button{border:1px solid currentColor;border-radius:20px;width:30px;height:21px;line-height:16px;font-size:18px;padding:0}
+.oh-gallery-controls button:disabled{opacity:.3;cursor:default}
+.oh-quote-section{padding:110px var(--oh-edge) 135px;min-height:720px}
+.oh-quote-column{width:calc(50% - 8px);margin-left:auto}
+.oh-quote-mark{font-family:Georgia,serif;font-size:45px;line-height:.5;display:block;height:25px}
+.oh-quote-column blockquote{margin:0}
+.oh-quote-column blockquote p{font-size:clamp(23px,1.65vw,30px);line-height:1.06;letter-spacing:-.04em;margin:0}
+.oh-attribution{display:flex;flex-direction:column;gap:3px;margin-top:25px;font-size:16px;letter-spacing:-.03em}
+.oh-attribution>span+span{font-family:Georgia,serif;font-size:18px;color:#77776c;letter-spacing:-.035em}
+.oh-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:100px}
+.oh-stats>div{border-top:1px solid #2224;padding-top:22px;display:flex;flex-direction:column;gap:10px}
+.oh-stat-number{font-size:clamp(48px,4.7vw,84px);line-height:1;letter-spacing:-.065em;font-variant-numeric:tabular-nums}
+.oh-stats>div>span+span{font-size:15px;line-height:1.15;letter-spacing:-.035em}
+@media(min-width:1600px){.our-home-sections{--oh-edge:48px}}
+@media(max-width:1023px){.oh-heading{padding-top:160px}.oh-editorial{padding-block:80px;min-height:300px}.oh-editorial h2{grid-column:1/11}.oh-editorial>p{font-size:18px}.oh-intro-copy{top:45%;left:45%}.oh-quote-column{width:60%}.oh-stats{gap:12px}.oh-stats>div>span+span{font-size:13px}}
+@media(max-width:767px){.our-home-sections{--oh-edge:20px}.oh-heading{padding:125px 20px 40px}.oh-heading>p{font-size:15px;margin-bottom:22px}.oh-heading h2{font-size:clamp(42px,9.4vw,64px);line-height:.96;letter-spacing:-.06em}.oh-intro-scene{height:105svh;min-height:680px}.oh-intro-copy{left:20px;right:20px;top:auto;bottom:0;padding-bottom:44px}.oh-intro-copy p{font-size:29px;line-height:1.05}.oh-editorial{padding:64px 20px;grid-template-columns:1fr;gap:30px;min-height:0}.oh-editorial h2,.oh-editorial>p,.oh-editorial-wide>p{grid-column:auto}.oh-editorial h2{font-size:31px;max-width:18ch}.oh-editorial>p{font-size:19px;line-height:1.25}.oh-feature-image{padding:24px 12px}.oh-feature-image>div{aspect-ratio:4/5}.oh-gallery{padding:24px 0}.oh-gallery-viewport{gap:12px;padding:0 12px;cursor:grab}.oh-gallery figure{flex-basis:88vw;aspect-ratio:4/5}.oh-gallery-cursor{display:none}.oh-gallery-controls{padding:16px 20px 0}.oh-gallery-controls button{width:36px;height:27px}.oh-quote-section{padding:70px 20px 90px;min-height:0}.oh-quote-column{width:100%}.oh-quote-column blockquote p{font-size:25px;line-height:1.12}.oh-stats{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:64px;gap:32px 18px}.oh-stat-number{font-size:64px}.oh-stats>div>span+span{font-size:15px}}
+@media(pointer:coarse){.oh-gallery-cursor{display:none}.oh-gallery-viewport{cursor:grab}}
+@media(prefers-reduced-motion:reduce){.oh-reveal>span{opacity:1;transition:none}.oh-intro-media>img,.oh-feature-image img{transform:none;will-change:auto}.oh-gallery-cursor{transition:none}}

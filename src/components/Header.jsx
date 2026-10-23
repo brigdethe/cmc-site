@@ -9,7 +9,7 @@ function Clock() {
   return <time className="clock" dateTime={time.toISOString()} title="Accra, Ghana" aria-label={`${parts.join(':')} in Accra, Ghana`}><span>{parts[0]}</span><b>:</b><span>{parts[1]}</span><strong>ACCRA</strong></time>;
 }
 
-const links=[['Approach','#approach'],['Services','#services'],['People','#people'],['Projects','#projects'],['Vision & Values','#vision'],['Our Home','#home'],['Journal','#journal']];
+const links=[['Approach','#approach'],['Services','#services'],['People','#people'],['Projects','#projects'],['Vision & Values','#vision'],['Our Home','#our-space'],['Journal','#journal']];
 
 export default function Header({ ready, loading, onContact, onMenuChange }) {
   const [open,setOpen]=useState(false);

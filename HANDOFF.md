@@ -474,3 +474,8 @@ User requested companylabel singleline: kicker uses max-content width/nowrap, bo
 - Approved fast gold loader paths: shared preloader variant in full and route loaders,2s cycle with proportionate stagger, behind text; lifecycle/reduced-motion rules retained. Footer navigation now exactly Home/Seminar/Projects/Register, same navbar URLs. Build and six tests pass; mobile browser confirms2s running traces and footer navigation to Register.
 
 - User refined loader paths to exactly two, matching landing hero12s cycle and original stagger. Only preloader variant count/speed changed. Build passes.
+
+## GitHub and Vercel publication
+- User authorized push and deployment. Verified GitHub/Vercel account brigdethe. Created private brigdethe/cmc-site, pushed clean-baseline to remote main; connected repository to Vercel brigdethes-projects/cmc-site for automatic deployments.
+- Production https://cmc-site-peach.vercel.app. Initial deployment READY. Public unauthenticated Chrome checks for Home, Seminar, Register and Projects return200, correct headings, no runtime errors or horizontal overflow. Six tests/build pass. Register remains preview-only and director note draft.
+- vercel.json specifies Vite/dist with SPA fallback. Local .vercel and .env.local ignored; no credentials committed.

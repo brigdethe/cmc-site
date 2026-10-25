@@ -1,0 +1,39 @@
+/* Hero geometry follows CMCMain/src/index.html; scoped to the seminar route. */
+.cmc-seminar-hero{position:relative;isolation:isolate;width:100%;height:100vh;height:100dvh;overflow:hidden;background:#fff;transition:height 320ms ease-out;color:var(--ink)}
+.cmc-seminar-hero hanging-card{position:relative;z-index:1;display:block;width:100%;height:100vh;height:100svh}
+.cmc-seminar-copy{position:absolute;z-index:3;right:2.5rem;bottom:1.25rem;left:2.5rem;display:flex;flex-direction:column;align-items:flex-start;pointer-events:none}
+.cmc-seminar-copy h1{margin:0;color:var(--cmc-gold);font:400 clamp(3.5rem,7.5vw,8rem)/.86 Haffer,Arial,sans-serif;letter-spacing:-.07em}
+.cmc-seminar-copy h1>span{display:block}
+.cmc-seminar-date{margin:0 0 -.25rem .2rem;color:#946014;font:400 1rem/1.2 Haffer,Arial,sans-serif;white-space:nowrap}
+.cmc-seminar-actions{display:flex;align-items:center;gap:.75rem;width:100%;margin-top:.375rem;pointer-events:none}
+.cmc-seminar-cta{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;min-height:3.25rem;padding:0 1.5rem;overflow:hidden;border:1px solid var(--cmc-gold);border-radius:999px;background:var(--cmc-gold);color:var(--ink);font:400 1rem/1 Haffer,Arial,sans-serif;text-decoration:none;white-space:nowrap;cursor:pointer;pointer-events:auto;transition:background .35s}
+.cmc-seminar-cta:hover{background:white}
+.cmc-seminar-intro{position:absolute;z-index:2;top:calc(50% + 6.5rem);right:2.5rem;width:clamp(12rem,21vw,20rem);margin:0;color:var(--ink);font:400 clamp(.9rem,1.2vw,1.125rem)/1.4 Haffer,Arial,sans-serif;translate:-25px 0;transform:translateY(-50%)}
+.cmc-seminar-intro span{color:#946014;text-decoration:underline;text-decoration-thickness:.085em;text-underline-offset:.16em}
+body:has(.seminar-page){--header-ink:#22231d;--header-arrow-ink:#f7f1e9}
+.cmc-seminar-hero>.footer-card-lines--hero{inset:0;left:0;width:100%;max-width:100%;height:100%;z-index:0}
+.footer-card-lines--hero .footer-card-line-base{opacity:.06}
+.footer-card-lines--hero .footer-card-line-trace{opacity:.22}
+@media(min-width:768px) and (max-width:1023px){.cmc-seminar-copy h1{font-size:clamp(3rem,6.25vw,4rem)}.cmc-seminar-date{font-size:.875rem}}
+@media(max-width:767px){.cmc-seminar-hero{height:100svh}.cmc-seminar-copy{right:1.25rem;bottom:.75rem;left:1.25rem}.cmc-seminar-copy h1{font-size:clamp(2.5rem,11vw,4rem)}.cmc-seminar-date{margin-bottom:-.125rem;margin-left:.125rem;font-size:.8125rem}.cmc-seminar-actions{gap:.5rem;margin-top:.25rem}.cmc-seminar-cta{min-height:2.75rem;padding:0 .65rem;font-size:.75rem}.cmc-seminar-intro{top:10rem;right:1.25rem;width:42vw;font-size:.75rem;line-height:1.25;translate:0 45px;transform:none}.footer-card-lines--hero .footer-card-line-trace{opacity:.18}}
+@media(prefers-reduced-motion:reduce){.cmc-seminar-hero,.cmc-seminar-cta{transition:none}}
+/* Match donor viewport sizing and its content-box CTA border dimensions. */
+html:has(.seminar-page){scrollbar-width:none}
+html:has(.seminar-page)::-webkit-scrollbar{display:none}
+.cmc-seminar-cta{box-sizing:content-box}
+
+.cmc-seminar-actions .text-link{pointer-events:auto;min-height:44px}
+/* Approved heading refinement: quieter scale, Haffer spacing, charcoal ink. */
+.cmc-seminar-copy h1{color:var(--ink);font-size:clamp(2.975rem,6.375vw,6.8rem);line-height:.98;letter-spacing:-.055em}
+@media(min-width:768px) and (max-width:1023px){.cmc-seminar-copy h1{font-size:clamp(2.55rem,5.3125vw,3.4rem)}}
+@media(max-width:767px){.cmc-seminar-copy h1{font-size:clamp(2.125rem,9.35vw,3.4rem)}}
+/* Approved stronger CMC gold on the white seminar hero. */
+.cmc-seminar-hero .footer-card-lines--hero{stroke:var(--cmc-gold)}
+.cmc-seminar-hero .footer-card-line-base{opacity:.12}
+.cmc-seminar-hero .footer-card-line-trace{opacity:.45}
+/* Stable mobile height prevents browser chrome from resizing the badge canvas while scrolling. */
+@media(max-width:767px){.cmc-seminar-hero{height:100vh;height:100svh;transition:none}.cmc-seminar-hero hanging-card{height:100%}}
+/* Stronger single-line treatment on the white hero. */
+.cmc-seminar-hero .footer-card-lines--hero{stroke-width:1.5}
+.cmc-seminar-hero .footer-card-line-base{opacity:.2}
+.cmc-seminar-hero .footer-card-line-trace{opacity:.85}

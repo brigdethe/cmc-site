@@ -218,3 +218,259 @@ Navbar right text-only card now Second edition / Coming soon, including accessib
 Approved CMC gold accents added via cmc-accents.css loaded after base styles: canonical#CC9632 arrow capsules/menu toggle/right story/current leadership counter/dividers/ticket badge and perforation/dark captions. Darker#946014 used for readable gold stats and small text on cream. Main surfaces/headings untouched. Middle nav card now Leadership / and expertise. Build passed; desktop/mobile menu screenshots and equal widths6px gap/no overflow checked.
 
 User styling follow-up: text-link labels wrapped separately so only words are underlined, never Arrow pseudo-elements. Footer card contour SVG now CMC gold#CC9632 at16% opacity; static motion retained.
+
+New lines approach approved on clean-baseline: replaced ONLY footer card contour SVG with FooterCardLines component/CSS.3 original routed rounded gold paths desktop/2 mobile;12s staggered draw/erase via normalized dasharray/offset; no rotation/drift/global layer. Opacity.48 trace/.09 base on dark card (.35mobile). IntersectionObserver+document visibility pauses offscreen/hidden; reduced motion static base. Card content/geometry unchanged. Build and desktop/mobile motion, no overflow, contact CTA, offscreen pause/reduced checks passed. Screenshots footer-lines-desktop/mobile.png outside repo. No commit/push.
+
+Footer card lines extended per user: added2 distinct rounded paths,5 total desktop (4mobile; existing path3 hide retained). New stagger delays-2/-6s preserve independent timing within12s loop. No layout/style changes.
+
+Approved About CMC lines added within left title-column wrapper only, faint on cream. Company panel path distribution corrected with5 full-width spread paths and uncropped viewBox; same offscreen/reduced lifecycle. Footer card original paths unchanged. Build passed; no global overlay.
+
+User requested company panel lines revert to right-focused original pattern: SeminarInvitation now uses default FooterCardLines variant again. About-left lines and footer card unchanged.
+
+About CMC decorative lines reduced to2 paths per user; other variants unchanged.
+
+About lines visibility increased: base.07, animated.30 desktop/.24mobile. Other variants unchanged.
+
+User removed About CMC decorative lines. Removed About FooterCardLines render and unused App import; heading wrapper/layout retained. Dark card/panel lines unchanged.
+
+User removed lines from company prefooter panel (SeminarInvitation); removed component render/import only. Combined footer card retains its5-path animation.
+
+Approved forum color change: oh-forum background#3D2B27, cream text, primary gold stats, light header scheme. Only About the seminar section changed; layout/counters/RSVP preserved.
+
+User extended deep brown to next section, seminar carousel. Gallery background#3D2B27 with cream counter/controls and light header scheme. Images/interactions unchanged.
+
+User extended brown to following CMC approach editorial: #3D2B27/cream/light header. Other content and layout unchanged.
+
+User requested mobile copyright/company/back-to-top on single row. Footer bottom uses nowrap flex and compact responsive8.5–10px text; desktop unchanged.
+
+Approved brown image handoff fix: seminar intro scene now has matching#3D2B27 backing; fixed media uses lower-edge mask following clip-bottom, feather ramps0->96px as scene exits. Fixed image position/reveal/text scrolling retained. Desktop1440x900/mobile390x844 screenshots reviewed; down/up samples identical at same offsets, imageTop0, computed mask valid, no page errors/overflow. Build passed after correcting initial string-escape syntax error. Screenshots brown-transition-desktop/mobile.png outside repo.
+
+User reverted image-to-brown smoothing: removed exit feather update, media mask and intro brown backing added by that fix. Existing brown forum/gallery/company sections retained.
+
+User requested underlying wrapper only: .our-home-sections background changed cream->#3D2B27. Overlay/clip/animation untouched.
+
+User clarified split underlay: oh-heading explicitly signature cream, parent underlying lower area remains#3D2B27. No gradient/mask/animation changes.
+
+Desktop navbar compacting approved: >=768px expanded shell600px (was680), nav28px/1.2 with18/20px padding, story height210px (was262), three equal-width cards, tighter heading. Ticket automatically matches600px. Mobile styles untouched. Targeted desktop/mobile checks600/354px widths and6px gap, no overflow; desktop screenshot reviewed.
+
+Approved navbar scroll visibility: Header tracks direction with12px accumulated threshold, shows within80px top, keeps open menu visible, keyboard focus reveals/protects header. Mouse-focused controls do not permanently prevent hiding. CSS translates/fades whole header; reduced-motion no transition. Desktop/mobile browser checks down-hide/up-show/jitter/menu-open/keyboard/top passed. Build passed before focus-visible refinement; no changes to layout/menu behavior.
+
+Menu label Approach renamed CMC Seminar. Current#approach destination retained temporarily; user plans dedicated seminar page next.
+
+Approved seminar hero: /seminar/ route uses existing Header, contact pane, company prefooter, footer card and Footer. Cream/gold Haffer hero reuses CMCMain isolated hanging-card renderer and required assets under public/seminar-badge (provenance notices included). No new dependencies. CMC Seminar menu now links /seminar/; homepage anchors resolve across routes. Desktop1440x900/mobile390x844: badge live, no overflow/page errors, menu and contact verified. Screenshots outside repository. Production build passed. Seminar body sections remain future work.
+
+White-section experiment (approved sections only): isolated src/white-sections.css switches About, leadership, seminar heading/hero, footer-card surround and footer backgrounds to pure white. Brown sections, navbar/ticket, controls, text colors and images unchanged. Remove stylesheet import to revert.
+
+User reverted white-section experiment except seminar hero: src/white-sections.css now targets only .cmc-seminar-hero. Original cream sections restored; other styles untouched.
+
+Approved seminar badge rope color: isolated renderer material strapColor changed #cb9635 to #000000. Artwork/gold lettering and physics unchanged; CMCMain donor untouched.
+
+User clarified blue text applies to badge Seminar lettering only: name artwork accent now logo navy #1B2D56 in isolated badge renderer. Hero heading remains gold, rope remains black.
+
+Approved gold lines across full white seminar hero: shared FooterCardLines hero variant uses five spread paths (four mobile), 12s staggered draw/retract, base .06 and trace .22/.18 mobile. Behind text and badge, pointer-events none. Footer unchanged. Desktop/mobile screenshots reviewed, badge live, no overflow, menu/contact working. Visible playing true/offscreen false; reduced motion hides traces. Production build passed.
+
+Approved hero responsiveness correction: replaced custom layout/content with CMCMain hero ordering, exact viewport height, absolute copy/intro positions, title sizing, CTA dimensions and tablet/mobile breakpoints. Badge uses full-height original custom-element positioning. About CMC and Highlights CTAs restored (Highlights uses existing archive until local content exists). White, lines, black strap, blue badge retained. Browser bounding-box comparison desktop1440x900 matches donor for section/copy/title/date/intro/badge; tablet820x1180 matches within1px. Mobile390x844 visually reviewed. Shared navbar/footer unchanged.
+
+Approved hero CTA refinement: removed About CMC button; Highlights now uses shared text-link/link-label/Arrow styling and retains archive destination.
+
+Approved hero heading styling: Haffer retained, all breakpoint font sizes reduced15%, line-height .98 (from .86), letter-spacing -.055em (from -.07em), charcoal var(--ink). Three-line wording and bottom-anchored copy retained.
+
+Approved hero line visibility: explicit CMC gold stroke, base opacity .12 and animated opacity .45 across desktop/mobile. Footer lines, paths and timing untouched.
+
+Approved mobile viewport sizing: hero uses100vh fallback/100dvh, no height transition on mobile; hanging-card fills100% of hero. Desktop unchanged.
+
+Approved seminar body: added SeminarSections.jsx/css with exactly3 sections (cream theme/context/venue; brown highlights with3 local photos and102/23/5 source-linked stats; cream four contributor portraits with native expandable biographies). Content/assets from CMCMain, no new event claims. Hero Highlights now #highlights. Existing hero/prefooter/footer retained. Build passed; desktop1440x900/mobile390x844 tested3sections, no overflow/broken images/page errors, profiles expand. Screenshots reviewed outside repo.
+
+Approved homepage-consistent seminar restyle: removed bespoke photo/profile grids; intro now uses actual intro-section layout, highlights actual oh-editorial/oh-stats styles and exported shared HomeGallery six-image drag/swipe component; contributors reuse ProcessSection with optional title prop (homepage default unchanged). Hero/nav/prefooter/footer retained. Build passed; desktop/mobile gallery advances02/06, mobile profile next works, desktop stage sticky/mobile relative, no overflow/page errors. Screenshots outside repo.
+
+Approved distinct seminar storytelling rebuild: three original components in SeminarSections (numbered expandable topics inspired by Thirdway Services; brown case-study photo essay with unequal image pair and102/23/05 stats; portrait/text contributor directory with expandable bios inspired by People). Homepage components no longer repeated on seminar page. Hero/nav/prefooter/footer unchanged. Uses local CMCMain content/assets. Build passed; desktop1440x900/mobile390x844:3sections, topic toggles/profile expansion work, no overflow/broken images/page errors. Screenshots outside repo reviewed.
+
+Source fidelity correction requested: inspected live Thirdway Services DOM/computed classes, identified actual service-row scroll-driven overlapping layout, 3-column proportions,48px/.98/-0.06 headings,24px gaps and View all compact mode. Implemented independent SeminarTopicStage with sticky scroll stacking, View all toggle, mobile accordion and static reduced-motion fallback. Added profile hover/detail transitions. Corrected Juliette/Datsa to exact homepage ImageKit eleanor/creep URLs and30% portrait positions. Build passed; desktop row2 reacheszero transform at its scroll position, View all mode switches, mobile accordion works; no overflow/page errors. Screenshot reviewed outside repo.
+
+User rejected approximate choreography. Read archived source Services implementation for measurement (not shipped/copied): pin starts top-top; row height and image height determine travel; photos stationary with bottom-up clip; rule/label/copy translate separately; mode compact rows .5s power2.out/.06 stagger, detail fade .45s; mobile all items stacked. Reimplemented those rules with existing GSAP/ScrollTrigger in SeminarTopicStage. 24col responsive positioning matches source classes, mobile377/564 photo ratios. Build passed; browser transition sample row transform none/copy318.5px/photo78.1% clip confirms independent mechanics, View all works, desktop/mobile no overflow/errors. Portrait URLs remain exact homepage assets.
+
+User requested removal of all added seminar body sections. Removed SeminarSections import/render from SeminarPage. Existing hero, company prefooter, footer card and footer remain. Highlights restored to external archive to avoid dead local anchor. Components retained unused for recoverability.
+
+Approved short page transition: PageTransition wraps existing route choice and intercepts same-origin home/seminar links.250ms logo curtain cover +250ms reveal, no image sequence/expansion. Return homepage skips first-load Preloader; direct initial home still original loader. Browser history and anchors handled; modified/new-tab/external links preserved; reduced-motion switches without animation. Desktop checked curtain/home->seminar/back and no replayed loader. Build passed.
+
+Page transition smoothness correction: replaced vertical cover/reveal transforms with stationary250ms opacity crossfades (same approximate .5s total). Logo remains fixed, removing start/stop travel. Routing/timing/reduced-motion logic unchanged.
+
+Approved single hero line: FooterCardLines hero variant now renders only first spread path (static faint base plus animated trace of same path). Footer variants unchanged; hero gold opacity and12s playback unchanged.
+
+User found single hero line too faint: hero-only stroke1.5px, base opacity .2, animated opacity .85. CMC gold/timing/path and footer unchanged.
+
+User requested another hero line: hero now uses first2 distinct spreadPaths, same gold strength and staggered animation. Footer unchanged.
+
+Approved replacement for generic transition: ShortPageLoader reuses original loader's three-line competitions/and [round logo] markets/center composition, Haffer sizing, staggered letter rise, logo-box opening and outward type shifts. Entrance .5s/box .5s overlap; route swap750ms then250ms reveal (~1s total). No seminar photos/image sequence/fullscreen image expansion. Existing first-visit loader unchanged.
+
+Short loader verification: home/seminar/back routes pass without full loader replay; reduced-motion route switch passes; production build passed before final cover-duration adjustment to750ms.
+
+Approved two animated gold paths in company prefooter panel: shared FooterCardLines company-panel variant renders2spread paths, clipped/isolated behind content.12s animation/offscreen-hidden pause/reduced-motion retained; opacity .09 base/.48 trace. Footer and hero unaffected.
+
+User requested one more line sc: company panel now3spread paths, including mobile. Hero stays2/footer unchanged.
+
+User rejected compiled Thirdway runtime/iframe as wrong approach. Fully reverted that approach: public/project-reference moved OUTSIDE repo to chat work/rejected-project-runtime for recovery; only CMC photograph retained as public/media/cmc-project.png. ProjectPage.jsx/css rewritten as authored React/Haffer/Georgia and existing GSAP/ScrollTrigger. No Next HTML/chunks/CSS/fonts/iframe in src/public/dist. Projects route remains /projects/british-lands-hq/. CMC Header kept per explicit clarification; NO footer. CMC copy replaces British Land article. Native page includes centered masked title entrances/delayed image, original-layout editorial/photo rows/tall pairs/overlay/caption/stats, looping draggable/click-next gallery with custom cursor+keyboard/buttons, related CMC links. Header iframe scrollSurface support removed; ordinary page scroll restored. Browser-testing-with-devtools skill requested; exact DevTools MCP not available in registry; connected browser read-only source visual/computed inspection and isolated Playwright QA used. Desktop1440x900/mobile390x844 screenshots reviewed; no errors/warningsHTTPfailures/source requests, no iframe/footer, counts102/23/5, only localCMCimage, no overflow/brokenphotos. Reduced-motion: gallery wraps4steps, keyboard,contact,Projects/Seminar/history pass. Build passes. Original reference look is composition/motion reference; no copied native runtime retained.
+
+Approved project hero gold lines: reused two-path hero variant inside isolated heading-stage only. Moved existing top padding to wrapper at identical248px desktop/148px below1280; text spacing unchanged, photo outside clipped layer. Gold1.5px, .2 base/.85 trace, shared12s stagger/pause/reduced-motion.
+
+User requested two more spread hero lines: project-hero variant now4distinct spreadPaths across heading only, includingmobile. Seminar hero andfooter unchanged.
+
+Approved CMCMain first2sections added immediately after Projectshero: CmcIntroSections.jsx/css copies companylabel/photo curvedtab and editorial wording/layout from CMCMain src/about/index.html. Libraryphoto localized public/media/cmc-library.jpg. Scoped stylesadapt Haffer sizing andcharcoal/currentcream colors; same1.4s imagesettle and.8s/70ms textentry onintersection, reducedmotion static. CTA mapped /#services to avoid donor #our-focus deadanchor. Existingheader retained/nofooter. Build passes; desktop1440x900/mobile390x844:2sections correctorder, photo loaded,nooverflow/errors, CTA landsrootservices. Screenshots reviewed outside repo.
+
+Approved nextCMCMain section: CmcCitySection.jsx/css plus ownCMC section-border module imported as cmc-section-border. Exact Local insight/Wider impact copy and donor actual seminar-stage background retained. Stickycard grid3/8 desktop4/6 mobile,48px matingcurves,ResizeObserver dock-height reservation/scroll dock-state, unique SVGmask viauseId. Typography/colors adapt projectcurrent Haffer/cream/ink. Inserted after intro pair. Buildpassed; desktop/mobile pinnedtop80/72px, then dockgap0 at550/650px scroll, reversescleanly at150px, no overflow/errors. Screenshots outside repo reviewed.
+
+User requested projecthero removal but preservation for anotherpage: extracted complete hero/photo/4goldlines/responsiveCSS/GSAP entrance into reusable CaseStudyHero.jsx/css withtitle/subtitle/image props. Not mounted inProjects. Removed oldhero render and emptyGSAP hero selectors; current intro title promotedtoh1 without stylingchange. Projectnow startsCMCIntroSections thenCMCCitySection; headerretained/nofooter.
+
+Approved4spread gold paths overCMC intro libraryphoto: reused project-hero variant, fullphoto widthdesktop/mobile, abovephoto/shade belowcompanylabel.1.5px/.2base/.85trace, shared12s stagger/offscreen-hidden pause/reducedmotion. No layout/image changes.
+
+User removed Projects carousel: CaseGallery no longer mounted; surrounding statistics/photo-pair/related content unchanged.
+
+User swapped menu destinations only: CMC Seminar -> /projects/british-lands-hq/; Projects -> /seminar/. Labels/page routes/content unchanged.
+
+Approved CTA consistency: intro Explore our approach now sharedtext-link/link-label/Arrow instead donorroundedpill. Related CMC card actions use sharedgold Arrow, underlinehover/focusring. Labels/URLs/navbar/layout preserved.
+
+Approved currentproject typographyhierarchy: scoped tokens h1~64desktop/40mobile,h2~40/28,h3 26/22,body18/16,labels14/12. Applied toCMCintro,city,editorial,info,related; standfirst28/22 andfeature26/22. Wording/colors/actions untouched; docking ResizeObserver accommodates reflow.
+
+User corrected hierarchy to match mainlandingpage: main heading exactlandingclamp40/5vw/80, mobile46; body20desktop/19mobile; sectionheadingsclamp32/3vw/48 mobile36; cards28/26; labels16/14; standfirstlandingclamp26/2.5vw/42 mobile26. Previous64/18/16 scale replaced.
+
+User removed selected final2photo pair immediately aboveContinue the conversation. Earlier photo pair andrelatedcards untouched.
+
+User removed first standalonefullwidth ProjectPhoto afterseminardetails andbeforeA sharedstartingpoint. Remainingpaired/overlay/captionphotos unchanged.
+
+User requested companylabel singleline: kicker uses max-content width/nowrap, bounded bycurvewidth; mobilefontclamp11/3.3vw/14 tofit smallphones. Companywording unchanged.
+
+## Landing route swap
+- Root now renders the former CMC Seminar menu destination (ProjectPage). Former homepage is /seminar/; hanging-badge page remains accessible at /projects/british-lands-hq/ through Projects.
+- Updated shared navigation, footer and company approach anchors for the new routes.
+- Fixed queued city ResizeObserver callback during route unmount; no visual changes.
+- Production build and direct route/menu navigation checks completed.
+
+## New homepage preloader handoff
+- Restored full first-load preloader on the new homepage; internal navigation retains the short loader.
+- Final frame uses local cmc-library.jpg, expands independently of the typography stack to screen height, settles to the photo bounds, then reveals the cream editorial.
+- Matched image crop/shade and suppressed duplicate photo zoom during handoff. Header/content wait for reveal.
+- Reserved scrollbar gutter; expansion width uses actual photo bounds rather than viewport width (verified 1425px photo in 1440px desktop).
+- Production build and all three existing preloader tests pass. Desktop/mobile browser checks report no errors or horizontal overflow; screenshots saved outside repo.
+
+## Leadership moved to landing page
+- Moved existing ProcessSection from /seminar/ to /, immediately after Local insight. Wider impact. Component, portraits, bios and animation code preserved.
+- People menu, leadership story card and footer process link now target /#process; removed obsolete people marker from seminar page.
+- Production build passes. Desktop sticky profile changes and mobile Next/Read more verified; no horizontal overflow or browser errors; seminar has no duplicate leadership section.
+
+- Removed the selected side-by-side repeated photo pair from the landing page; adjacent content preserved.
+
+- Added shared SeminarInvitation, animated Prefooter card and Footer to the landing page, connected to its existing contact drawer. Production build passes; desktop/mobile checks confirm one instance each, clickable CTA, no horizontal overflow or browser errors.
+
+- Removed the selected first-edition photo and its overlaid venue caption from the landing page; surrounding editorial sections preserved.
+
+- Removed approved landing-page sections: A shared starting point, Beyond the seminar, and First edition in numbers. Kept Institutions, rules and practice and surrounding content.
+
+## Landing seminar scroll sequence
+- Added CaseSeminarSequence.jsx/css around existing CMC Seminar info, group photograph text and Institutions editorial. Preserved exact copy and local image.
+- Uses source mechanism: viewport-fixed image clipped to moving scene bounds, scroll-driven shade and per-word opacity; cream intro above, #3D2B27 editorial below. Removed cream photo text card in favor of direct overlay.
+- Excluded scene from generic GSAP photo fade to protect fixed positioning. Header ink follows brown section; observers/listeners clean up on route changes; reduced motion shows all text.
+- Production build passes. Desktop 1440x900 and mobile 390x844 forward/reverse checks verify clip movement, reversible text, reduced motion, no overflow/errors. Screenshots in chat outputs.
+
+- Continue the conversation now uses CMC deep brown #3D2B27 and cream foreground; gold arrows and layout retained. Header uses light controls over the section.
+
+- Hero heading now reads Shaping fairer, more competitive markets for Ghana. Moved existing Explore our approach link under the heading with 24px separation; destination/style retained. Desktop/mobile checks confirm placement and no overflow.
+
+## Seminar sticky story showcase
+- Added StickyStoryShowcase before company prefooter on /seminar/: two CMC images, upward image wipe behind stationary changing card, lorem ipsum content, reversible scroll state and responsive mobile image-above-card layout.
+- Contact CTAs open existing drawer. Reduced-motion CSS provides static stories. Fixed attribution markup to avoid global footer styles.
+- Production build passes; desktop/mobile forward/reverse checks show correct card switches and no collisions, horizontal overflow or browser errors. Contact drawer opens.
+
+- Removed Ghanaian context. Broader perspectives. editorial from /seminar/. Gallery and sticky showcase preserved.
+
+- Reduced seminar opening heading top padding to 80px desktop/tablet and 64px mobile. Existing fixed-image reveal and content preserved.
+
+- Removed rounded border from hero Explore our approach CTA. Updated existing text-link selector after its move into title column; underline, gold arrow and focus indicator retained.
+
+- Removed sticky showcase bottom padding on desktop/mobile so it meets the company image section without the cream gap.
+
+- Swapped seminar sticky showcase and gallery: showcase now follows forum/statistics, then gallery, then company prefooter. Both components and interactions retained. Production build passes.
+
+## Four-stage seminar highlight reel
+- Replaced lorem ipsum stories with four reference-agenda stages: welcome 9–10:30, Peter Alexiadis 10:30–11:55, David Bailey KC 12–1:30, panel/closing 2–3. Source agenda read from conference2.onrender.com HTML.
+- Time left/activity right; concise agenda summaries, four local seminar photographs and clearly labeled draft attendee testimonial placeholders. RSVP for the next seminar opens existing contact drawer.
+- Expanded track to 400svh with per-image wipe values and four reversible active states; mobile/reduced-motion treatments retained. Production build passes; desktop all-stage/reverse checks and RSVP drawer verified.
+
+- Fixed abrupt final highlight-stage exit: last wipe previously finished exactly at sticky release (3 viewport scroll distances). Added 65svh of pinned reading hold after final wipe, preserving all transition timing and zero bottom gap.
+
+- Corrected actual final-stage wipe bug: image layers with z-index 3 escaped their parent and painted above the card (z-index 2). Isolated image container at z-index 0, keeping all wipes behind the card. Desktop/mobile hit tests at four final-stage positions confirm card remains uncovered; screenshot verified.
+
+- Added compact cream heading before the seminar highlight stages: Highlights from the first seminar / A day of ideas. A shared way forward. Reuses oh-heading typography and approved 80px desktop / 64px mobile top padding.
+
+- Highlights heading now deep brown with cream text. Added matching brown Gallery / Moments from the seminar. heading directly before image gallery, retaining existing slider interactions.
+
+- Mobile/tablet sticky-stage surround now CMC deep brown instead of cream; individual card colors and wipe behavior unchanged.
+
+- Added four animated gold paths behind mobile/tablet stage image and card, visible in brown surround only. Reuses FooterCardLines lifecycle/reduced-motion support. Desktop hidden; all four mobile paths retained.
+
+- Stage card palette now green, cream, CMC gold and navy, with dark text on light cards. Shortened summaries: verified <=4 lines at 320/390px. Fictional Ghanaian names carry Sample testimonial labels.
+- Mobile animated stage viewport explicitly 100dvh with 100vh fallback, preserving existing 390px card (small phones) / 365px card sizes and scrolling track. Reduced-motion static layout retained. Build passes.
+
+- Corrected mobile height change: image/card composition retains its original 100svh footprint and fixed card height inside separate 100dvh brown stage surround. Extra viewport space no longer stretches the image/card group. Build passes.
+
+- Added four animated gold paths directly within oh-gallery-viewport (carousel div), behind its image slides. Existing offscreen/hidden-tab pause and reduced-motion support reused; outer gallery section unchanged.
+
+- Third-stage RSVP arrow glyph now CMC gold inside its existing black capsule.
+
+- Swapped About CMC and CMC Seminar information blocks across / and /seminar/ via extracted AboutCmcSection and SeminarInformation components. Copy/styles preserved; both fixed-image scroll sequences remain. Build and direct route checks pass.
+- Cream second-stage RSVP capsule now has a visible gold arrow glyph, matching the third-stage treatment.
+
+- Final seminar stage now remains pinned after the reel finishes while the opaque brown Moments heading and gallery rise above it (scoped sticky end position and foreground stacking). Stage transitions, mobile card dimensions and reduced-motion static layout preserved. Desktop/mobile forward/reverse checks confirm pinned stage, moving Moments boundary and no horizontal overflow. Build passes.
+
+- Moments heading and gallery now signature cream with charcoal text and dark header controls; existing foreground stacking and wipe-over behavior retained.
+
+- Landing order changed to Local insight → About CMC → Leadership & Expertise → fixed-image seminar sequence. Content and interactions preserved.
+
+## Official-site content pass (subagent research and implementation)
+- Company-focused landing: purpose, Ghana context, approach, leadership/guest distinction, seminar as example. Event-focused /seminar/: factual overview, official theme, practical questions, programme and gallery.
+- Replaced all invented attendee endorsements/names with factual programme notes. Short summaries retained. Stats102/23/5 sourced to CMC's own recap; no100% satisfaction claim used.
+- CMC in focus cards: official https://cmc-ghana.com/ ; Citi Newsroom March30 report ; NCA March31 account of March26 courtesy call. Clearly labeled sources; no formal endorsement/partnership implied.
+- Updated profile copy to supported event roles/contributions; removed unsupported historical embellishments. Corrected company name Competition (singular). Fixed About CMC navigation and first-edition anchor.
+- Build and existing tests pass. Desktop1440/mobile390 checks: no placeholders, overflow or runtime errors; source URLs verified in rendered cards. Added missing root home anchor found during check.
+- Submission caveat: contact form remains explicitly a demo, with no sending service; not altered by content-only scope. Next seminar date is not asserted.
+
+- Landing fixed-scroll seminar scene now plays supplied gha.mp4 muted, looping and inline. Original image remains behind video for loading/error and reduced-motion fallback. Video source assigned on intersection; pauses offscreen/hidden tab and on reduced motion; cleanup releases media.
+- Build passes. Real Chrome verified playback 640x360, muted, paused offscreen and hidden for reduced motion. Existing clipping, shade and text unchanged.
+
+- Mobile video-reveal smoothing: preload video one viewport before entry, fade poster-to-video over450ms, batch all geometry reads before CSS writes (removed forced layout read after clip writes), and promote active clipping surface. Scroll geometry/effect unchanged.
+- Build passes. Mobile Chrome emulation confirms video ready while still offscreen/paused, playing through forward/reverse clip positions, paused on exit, no runtime errors. Physical-device browser-bar behavior still requires user observation.
+
+- Ghana-flag video overlay now focuses on serving Ghana's long-term interests and the people who depend on its markets; replaced event/date caption with CMC / Accra, Ghana. Scroll/media behavior unchanged.
+
+- Updated middle Citi Newsroom card to supplied ImageKit SVG and right NCA card to supplied maxresdefault JPG. Left recap image, links and layout retained; all three images verified loaded.
+
+- Updated seminar fixed-reveal background to supplied Screenshot110153. Stage four now uses former stage-three address.png; stage three uses supplied Screenshot110141. Text, colors and animation unchanged.
+
+## Low-data performance optimization
+- Approval covers responsive/optimized images, deferred assets, route splitting and Data Saver poster fallback. Added ResponsiveImage, image-delivery/data-policy helpers, local WebP variants, Latin Haffer subset and smaller silent hero MP4. Originals retained; no new runtime dependencies.
+- Production mobile cold-cache first11s: landing 2,005,510→358,637 bytes; seminar4,795,424→2,137,426 bytes on normal connection. Data Saver +1Mbps:299,458 /265,755 bytes, no media requests even after scrolling. Synthetic sample, not field CWV.
+- Low-data skips full first-load preloader and videos. Normal preloader/animations preserved. Both video lifecycles pause offscreen/hidden/reduced-motion. Hidden menu imagery mounts on opening; fixed-scene posters approach-load.
+- Lazy routes load beneath curtain before route change. Fixed same-page popstate triggering redundant curtain. Six tests and production build pass. Desktop/mobile normal interaction checks and throttled Data Saver scans report no errors/overflow; all image candidates present.
+- Detailed report and screenshots saved to chat outputs/performance-report.md. No push or commit.
+
+## Register and Projects routes
+- Approved menu now Home, Seminar, Projects, Register. Register /register/ reuses the existing badge hero with the new 2027 attendee/sponsor interest section immediately after it. No sending service or persistence; explicit preview notice and preview-only result.
+- Projects retains /projects/british-lands-hq/ (also /projects/) and restores CaseStudyHero with Projects / Coming soon, then shared prefooter and footer. Landing and seminar content preserved.
+- Lazy route loading and curtain interception cover both new destinations. Build and six tests pass. Chrome desktop1440/mobile390 verifies sponsor preview, both routes, no overflow or runtime errors. No commit or push.
+
+- Seminar-only image-backed prefooter now carries a draft Managing Director closing note attributed to Paul Kofi Datsa, visibly pending approval. Existing image/lines/layout retained. Lower Keep in touch footer card and other pages unchanged. Build and desktop/mobile rendered checks pass; no horizontal overflow.
+
+- Approved Register interest restyle: full-width, minimum100svh seminar photograph with cream form panel on right. Mobile photo above overlapping cream panel with natural form height. All fields/preview behavior preserved. Production build and desktop/mobile sponsor preview/overflow checks pass.
+
+- Approved mobile hanging badge scroll fix: removed100dvh mobile override in favor of100svh, preserving100% card height and physics. Prevents mobile browser chrome resizing hero/canvas during scroll. Build passes; Chrome mobile scroll checks show stable844px hero/card/canvas, no errors/overflow. Actual mobile browser-bar expansion still needs device observation.
+
+- Approved title-case loader wording: Competition and Markets Center in both initial and short route loaders. Removed forced lowercase CSS. Letter spans/layout/choreography unchanged. Build and six tests pass.
+
+- Approved landing updates: mobile intro copy hidden; seminar-group fallback replaced with640x360 JPEG still captured from supplied Ghana flag video. Mobile scene now clips fixed media through native ancestor clip-path rather than per-scroll JS clip updates; desktop reveal and word reveal retained. Stable100svh mobile media. Build passes; desktop/mobile checks confirm correct poster, visibility, clip modes, no overflow/runtime errors. Physical mobile browser-bar behavior still needs device observation.
+
+- User clarified director-note prefooter is sitewide. Removed old contact-copy variant entirely; shared director note now mounted on Home, Seminar, Register and Projects ahead of unchanged Keep in touch footer card. Build and all four rendered route checks pass: one note, zero old headings, one footer card each.
+
+- Approved middle CMC in focus photo changed to supplied Screenshot110028; Citi article destination retained. Entire menu ticket is now a native /register/ anchor with accessible label, focus outline, and menu close handler. Existing focus trap includes anchor. Build passes; image decode and mobile Enter-key navigation verified.
+
+- Approved fast gold loader paths: shared preloader variant in full and route loaders,2s cycle with proportionate stagger, behind text; lifecycle/reduced-motion rules retained. Footer navigation now exactly Home/Seminar/Projects/Register, same navbar URLs. Build and six tests pass; mobile browser confirms2s running traces and footer navigation to Register.
+
+- User refined loader paths to exactly two, matching landing hero12s cycle and original stagger. Only preloader variant count/speed changed. Build passes.

@@ -1,5 +1,5 @@
-.our-home-sections{position:relative;z-index:3;isolation:isolate;background:var(--cream);color:var(--ink);--oh-edge:32px;scroll-margin-top:0}
-.oh-heading{padding:clamp(144px,15.5vw,244px) var(--oh-edge) 56px}
+.our-home-sections{position:relative;z-index:3;isolation:isolate;background:#3d2b27;color:var(--ink);--oh-edge:32px;scroll-margin-top:0}
+.oh-heading{padding:clamp(144px,15.5vw,244px) var(--oh-edge) 56px;background:var(--cream)}
 .oh-heading>p{margin:0 0 24px;font-size:18px;line-height:1;letter-spacing:-.035em}
 .oh-heading h2{margin:0;font-size:clamp(52px,5.85vw,112px);line-height:.91;letter-spacing:-.065em;font-weight:400}
 .oh-intro-scene{position:relative;height:100svh;min-height:600px;overflow:clip;color:var(--cream)}
@@ -53,3 +53,22 @@
 
 .oh-seminar-description .oh-stats{margin-top:48px}
 @media(max-width:767px){.oh-seminar-description .oh-stats{margin-top:32px}}
+
+/* Tighter seminar heading spacing; image reveal retains its own scene geometry. */
+.oh-heading{padding-top:80px}
+@media(max-width:767px){.oh-heading{padding-top:64px}}
+
+.oh-highlights-heading,.oh-gallery-heading{background:#3d2b27;color:var(--cream)}
+
+/* Gold artwork belongs to the carousel viewport, not its outer section. */
+.oh-gallery-viewport{isolation:isolate}
+.oh-gallery-viewport>.footer-card-lines{left:0;width:100%;height:100%;max-width:100%;z-index:0;stroke-width:1.2}
+.oh-gallery-viewport>figure{position:relative;z-index:1}
+.oh-gallery-viewport>.footer-card-lines .footer-card-line--3{display:block}
+.oh-gallery-viewport>.footer-card-lines .footer-card-line-base{opacity:.16}
+.oh-gallery-viewport>.footer-card-lines .footer-card-line-trace{opacity:.55}
+
+.oh-gallery-heading,.oh-gallery{position:relative;z-index:4}
+
+
+.our-home-sections .oh-gallery-heading,.our-home-sections .oh-gallery{background:var(--cream);color:var(--ink)}

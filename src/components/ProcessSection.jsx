@@ -1,14 +1,15 @@
+import ResponsiveImage from './ResponsiveImage.jsx';
 import { useEffect, useRef, useState } from 'react';
 import './ProcessHero.css';
 
 const steps = [
-  { title: 'Paul Kofi Datsa', image: 'paul-kofi-datsa', imageUrl: 'https://ik.imagekit.io/dr5fryhth/creep.jpeg?updatedAt=1771705355007', position: '50% 30%', copy: 'Managing Director, CMC. Paul Kofi Datsa brings experience in telecommunications regulation and Ghana’s competition-policy discussions.', more: 'He previously served as Director of Regulatory Administration at Ghana’s National Communications Authority and represented the NCA at the International Telecommunication Union’s Global Symposium for Regulators in 2015 and 2016.' },
-  { title: 'Dr. Juliette Twumasi-Anokye', image: 'juliette-twumasi-anokye', imageUrl: 'https://ik.imagekit.io/dr5fryhth/eleanor?updatedAt=1772063000212', position: '50% 30%', copy: 'Guest Speaker · Competition Law & Policy. A lawyer and independent consultant working across competition law, energy regulation and policy design.', more: 'Her work spans Ghana, West Africa, the UK and the EU. With a doctorate in regulation, competition law and economics, she brings regional insight to institutional capacity and market governance in West Africa.' },
-  { title: 'Peter Alexiadis', image: 'peter-alexiadis', position: '50% 30%', copy: 'Keynote Speaker · Visiting Professor. Peter Alexiadis specialises in competition law, communications policy and the regulation of network and digital markets.', more: 'He is a Visiting Professor at King’s College London and a Research Fellow at CERRE. He previously led the Brussels office of Gibson, Dunn & Crutcher, advising competition authorities, regulators and government ministries.' },
-  { title: 'Prof. David Bailey KC', image: 'david-bailey', position: '50% 30%', copy: 'King’s Counsel · Session Lead. David Bailey is a Professor of Practice in Competition Law at King’s College London and a practising barrister at Brick Court Chambers.', more: 'An author of leading works on competition law, his work addresses institutional structure, regulatory practice and enforcement policy across the EU, UK and emerging markets.' },
+  { title: 'Paul Kofi Datsa', image: 'paul-kofi-datsa', imageUrl: 'https://ik.imagekit.io/dr5fryhth/creep.jpeg?updatedAt=1771705355007', position: '50% 30%', copy: 'Managing Director, CMC. Paul Kofi Datsa brings people together to discuss competition economics, law and policy in Ghana.', more: 'He led CMC’s organisation of the first Ghana Competition Law & Policy Seminar and joined the delegation that met the National Communications Authority the following day.' },
+  { title: 'Dr. Juliette Twumasi-Anokye', image: 'juliette-twumasi-anokye', imageUrl: 'https://ik.imagekit.io/dr5fryhth/eleanor?updatedAt=1772063000212', position: '50% 30%', copy: 'Invited expert · First CMC Seminar. Dr. Juliette Twumasi-Anokye is a lawyer and competition specialist who addressed Ghana’s regional commitments at the event.', more: 'Her contribution highlighted the importance of professional skills, economic expertise and institutional capacity in making competition rules work.' },
+  { title: 'Peter Alexiadis', image: 'peter-alexiadis', position: '50% 30%', copy: 'Invited expert · First CMC Seminar. Peter Alexiadis is a Visiting Professor at King’s College London with experience in competition law and communications regulation.', more: 'His seminar session examined technical questions in Ghana’s draft framework, including market power and intellectual property rights.' },
+  { title: 'Prof. David Bailey KC', image: 'david-bailey', position: '50% 30%', copy: 'Invited expert · First CMC Seminar. David Bailey KC is Professor of Practice in Competition Law at King’s College London.', more: 'At the seminar, he discussed effective enforcement, certainty for businesses and the challenges of applying competition rules in digital markets.' },
 ];
 
-export default function ProcessSection() {
+export default function ProcessSection({ title = 'Leadership & invited experts' } = {}) {
   const section = useRef(null);
   const imageStage = useRef(null), mainSlot = useRef(null), smallSlot = useRef(null);
   const [index, setIndex] = useState(0), [expanded, setExpanded] = useState(false);
@@ -54,7 +55,7 @@ export default function ProcessSection() {
   };
   return <section ref={section} className="process-hero process-ready" id="process" aria-labelledby="process-title">
     <div className="process-stage">
-      <h2 className="process-section-title" id="process-title">Leadership &amp; Expertise</h2>
+      <h2 className="process-section-title" id="process-title">{title}</h2>
       <div className="process-grid" onPointerDown={event => {
         if (event.pointerType !== 'touch' || !event.isPrimary || !matchMedia('(max-width: 767px)').matches || event.target.closest('button,a')) return;
         swipe.current = { x: event.clientX, y: event.clientY };
@@ -65,8 +66,8 @@ export default function ProcessSection() {
         const dx = event.clientX - start.x, dy = event.clientY - start.y;
         if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(index + (dx < 0 ? 1 : -1));
       }}>
-        <div ref={imageStage} className="process-image-stage" aria-hidden="true">{steps.map((item, i) => <div className="process-image-frame" key={item.title} style={{ zIndex: i + 1 }}><img src={item.imageUrl || `/media/people/${item.image}.webp`} alt="" style={{ objectPosition: item.position }}/></div>)}</div>
-        <div ref={mainSlot} className="process-main-image"><img key={index} className="process-mobile-image" src={step.imageUrl || `/media/people/${step.image}.webp`} alt={step.title} style={{ objectPosition: step.position }}/></div>
+        <div ref={imageStage} className="process-image-stage" aria-hidden="true">{steps.map((item, i) => <div className="process-image-frame" key={item.title} style={{ zIndex: i + 1 }}><ResponsiveImage sizes="(max-width: 767px) 100vw, 45vw" src={item.imageUrl || `/media/people/${item.image}.webp`} alt="" style={{ objectPosition: item.position }}/></div>)}</div>
+        <div ref={mainSlot} className="process-main-image"><ResponsiveImage sizes="(max-width: 767px) 100vw, 45vw" key={index} className="process-mobile-image" src={step.imageUrl || `/media/people/${step.image}.webp`} alt={step.title} style={{ objectPosition: step.position }}/></div>
         <div className="process-side">
           <div className="process-counter"><span className="digit-pill">{String(index + 1).padStart(2, '0')}</span><span>/</span><span className="digit-pill">{String(steps.length).padStart(2, '0')}</span></div>
           <div className="process-controls process-mobile-controls"><button onClick={() => go(index - 1)} disabled={index === 0} aria-label="Previous profile">←</button><button onClick={() => go(index + 1)} disabled={index === steps.length - 1} aria-label="Next profile">→</button></div>
@@ -85,3 +86,4 @@ export default function ProcessSection() {
     </div>
   </section>;
 }
+

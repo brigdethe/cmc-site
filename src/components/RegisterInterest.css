@@ -1,0 +1,46 @@
+.register-interest{display:grid;grid-template-columns:1fr 1fr;gap:8vw;padding:96px 32px;background:var(--cream);color:var(--ink)}
+.register-interest-intro h2{font:400 clamp(38px,4.5vw,72px)/1 Haffer,Arial,sans-serif;letter-spacing:-.055em;margin:28px 0 36px;max-width:650px}
+.register-interest-intro p{max-width:520px;font-size:18px;line-height:1.4;margin:0 0 24px}
+.register-interest-intro p:first-child{font-size:15px}
+.register-interest-form{min-width:0;max-width:680px;width:100%}
+.register-preview-notice{font-size:15px;line-height:1.45;border-left:2px solid var(--cmc-gold);padding-left:16px;margin:0 0 32px}
+.register-interest-form fieldset{border:0;padding:0;margin:0 0 32px}
+.register-interest-form legend{padding:0;margin-bottom:16px}
+.register-role-options{display:flex;gap:32px}
+.register-role-options label{display:flex;align-items:center;gap:10px;cursor:pointer;min-height:44px}
+.register-role-options input{accent-color:#946014;width:20px;height:20px}
+.register-interest-form>label{display:block;font-size:16px;margin-top:24px}
+.register-interest-form label span{font-size:14px;opacity:.75}
+.register-interest-form>input,.register-interest-form>textarea{display:block;width:100%;border:0;border-bottom:1px solid #22231d88;background:transparent;color:var(--ink);border-radius:0;padding:12px 0;font-size:18px;min-height:48px}
+.register-interest-form>textarea{resize:vertical}
+.register-interest-form>.text-link{margin-top:32px}
+.register-interest-form input:focus-visible,.register-interest-form textarea:focus-visible{outline:2px solid #946014;outline-offset:4px}
+.register-preview-result{margin-top:28px;padding:20px;border:1px solid #22231d55;line-height:1.4}
+.register-preview-result p{margin-bottom:0}
+@media(max-width:767px){.register-interest{grid-template-columns:1fr;gap:32px;padding:64px 20px}.register-interest-intro h2{font-size:44px}.register-interest-intro p{font-size:16px}}
+
+/* Full-bleed photographic invitation, with the complete form on one cream panel. */
+.register-interest{position:relative;isolation:isolate;display:flex;justify-content:flex-end;align-items:center;width:100%;min-height:100vh;min-height:100svh;padding:32px;background:#3d2b27;gap:0}
+.register-interest-photo{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;object-position:38% center}
+.register-interest-card{width:50%;max-width:840px;padding:32px;background:var(--cream);border-radius:2px}
+.register-interest-intro h2{font-size:clamp(36px,3.3vw,56px);margin:16px 0 20px}
+.register-interest-intro p{max-width:none;font-size:16px;line-height:1.3;margin-bottom:14px}
+.register-interest-intro p:first-child{font-size:14px;margin-bottom:0;color:#946014}
+.register-interest-intro p:last-child{font-size:13px;line-height:1.35;margin-bottom:24px}
+.register-preview-notice{font-size:12px;line-height:1.35;margin-bottom:18px;padding-left:12px}
+.register-interest-form fieldset{margin-bottom:8px}
+.register-interest-form legend{font-size:14px;margin-bottom:4px}
+.register-role-options{gap:28px;font-size:15px}
+.register-interest-form>label{font-size:14px;margin-top:14px}
+.register-interest-form label span{font-size:12px}
+.register-interest-form>input{min-height:40px;padding:8px 0;font-size:16px}
+.register-interest-form>textarea{min-height:68px;height:68px;padding:8px 0;font-size:16px}
+.register-interest-form>.text-link{margin-top:24px}
+@media(max-width:767px){
+ .register-interest{display:block;min-height:100svh;padding:0 20px 24px}
+ .register-interest-photo{position:relative;display:block;inset:auto;width:calc(100% + 40px);max-width:none;height:44svh;min-height:260px;margin:0 -20px;object-position:center}
+ .register-interest-card{position:relative;width:100%;max-width:none;margin-top:-36px;padding:24px}
+ .register-interest-intro h2{font-size:38px;margin-top:18px}
+ .register-interest-form>input{min-height:44px}
+ .register-interest-form>textarea{height:92px}
+}

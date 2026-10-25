@@ -1,0 +1,27 @@
+.case-seminar-sequence{position:relative;z-index:3;isolation:isolate;background:#3d2b27}
+.case-seminar-sequence>.intro-section{position:relative;background:var(--cream);color:var(--ink)}
+.case-scroll-scene{position:relative;height:100svh;min-height:600px;overflow:clip;color:var(--cream)}
+.case-scroll-media{position:fixed;inset:0;height:100svh;overflow:hidden;visibility:hidden;clip-path:inset(var(--clip-top,100svh) 0 var(--clip-bottom,0px) 0);pointer-events:none}
+.case-scroll-scene[data-visible="true"] .case-scroll-media{visibility:visible}
+.case-scroll-media>img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.case-scroll-shade{position:absolute;inset:0;background:linear-gradient(to bottom,#171b1720,#171b17a6);opacity:var(--shade,0)}
+.case-scroll-copy{position:absolute;z-index:1;top:60%;left:50%;right:32px;padding-bottom:64px}
+.case-scroll-copy p{font-size:clamp(25px,2.15vw,38px);line-height:1.03;letter-spacing:-.05em;margin:0 0 16px}
+.case-scroll-copy>span{display:block;margin-top:30px;font-size:16px;line-height:1.4}.case-scroll-copy em{font-style:normal}
+.case-scroll-text>span{opacity:clamp(.17,calc((var(--reveal,0)*var(--word-count) - var(--word-index))*.85),1);transition:opacity .12s linear}
+.case-scroll-editorial{position:relative;background:#3d2b27;color:var(--cream);padding-block:100px}
+@media(max-width:1023px){.case-scroll-copy{top:45%;left:45%}}
+@media(max-width:767px){.case-scroll-scene{height:auto;min-height:100svh;padding:clamp(240px,45svh,420px) 20px 64px}.case-scroll-media{height:100lvh}.case-scroll-copy{position:relative;inset:auto;width:100%;padding:0}.case-scroll-copy p{font-size:29px;line-height:1.05}.case-scroll-copy>span{font-size:14px}.case-scroll-editorial{padding:64px 20px}}
+@media(prefers-reduced-motion:reduce){.case-scroll-text>span{opacity:1;transition:none}}
+
+.case-scroll-media>video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;opacity:0}
+.case-scroll-media>video[data-ready="true"]{opacity:1}
+@media(prefers-reduced-motion:reduce){.case-scroll-media>video{display:none}}
+
+/* Warm video handoff and a single composited clipping surface while visible. */
+.case-scroll-media>video{transition:opacity .45s ease}
+.case-scroll-scene[data-visible="true"] .case-scroll-media{will-change:clip-path}
+@media(prefers-reduced-motion:reduce){.case-scroll-media>video{transition:none}}
+
+/* Native ancestor clipping keeps the fixed mobile media in sync with scrolling. */
+@media(max-width:767px){.case-scroll-scene{clip-path:inset(0)}.case-scroll-media{clip-path:none;height:100svh}.case-scroll-scene[data-visible="true"] .case-scroll-media{will-change:auto}}

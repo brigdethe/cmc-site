@@ -46,3 +46,9 @@ footer.cmc-footer{padding-top:26px;padding-bottom:18px}
   .cmc-footer-contact p{margin:0;font-size:14px}
   .cmc-footer-bottom{padding-top:14px;gap:8px;font-size:12px}
 }
+
+@media(max-width:767px){
+  .cmc-footer-bottom{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:6px;font-size:clamp(8.5px,2.45vw,10px);white-space:nowrap}
+  .cmc-footer-bottom>span:nth-child(2){font-size:inherit}
+  .cmc-footer-bottom>a{gap:5px;flex-shrink:0}
+}

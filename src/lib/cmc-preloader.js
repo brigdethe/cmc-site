@@ -1,9 +1,10 @@
 import gsap from 'gsap';
 
-export function startPreloader(loader, { onReveal, onComplete } = {}) {
+export function startPreloader(loader, { onReveal, onComplete, landing = 'hero' } = {}) {
   if (!loader) return;
   const root = document.documentElement;
   root.classList.add('is-preloading');
+  loader.style.width = `${(document.body?.getBoundingClientRect?.().width || root.clientWidth)}px`;
   let disposed = false, revealed = false, finished = false;
   const reduced = typeof matchMedia === 'function' ? matchMedia('(prefers-reduced-motion: reduce)').matches : false;
 
@@ -30,7 +31,7 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
 
   async function run() {
     loader.dataset.phase = 'waiting';
-    const heroImage = typeof document !== 'undefined' ? document.querySelector('.hero-media img') : null;
+    const heroImage = typeof document !== 'undefined' ? document.querySelector(landing === 'library' ? '.cmc-intro-photo > img' : '.hero-media img') : null;
     const loaderImgs = Array.from(loader.querySelectorAll?.('img') || []);
     const promises = [
       typeof document !== 'undefined' && document.fonts?.ready,
@@ -126,6 +127,30 @@ export function startPreloader(loader, { onReveal, onComplete } = {}) {
           ease: 'none',
           stagger: 0.45
         }, '-=0.05');
+      }
+
+      if (landing === 'library') {
+        const image = growingImage[0];
+        const target = document.querySelector('.cmc-intro-photo');
+        const poster = target?.querySelector('img');
+        const shade = loader.querySelector('.willem__shade');
+        tl.addLabel('expand', '+=0.2');
+        // Detach from the type stack before sizing, so flex reflow cannot shake the image.
+        tl.add(() => {
+          const rect = image.getBoundingClientRect();
+          loader.appendChild(image);
+          gsap.set(image, {position:'absolute',left:rect.left,top:rect.top,width:rect.width,height:rect.height,x:0,y:0,xPercent:0,yPercent:0,margin:0,zIndex:2});
+          const cover=image.querySelector('.willem__cover-image');
+          gsap.set(cover,{objectPosition:getComputedStyle(poster).objectPosition,scale:1});
+          if(shade)gsap.set(shade,{background:getComputedStyle(target,'::after').background,opacity:1});
+        }, 'expand');
+        tl.to(image,{left:0,top:0,width:()=>target.getBoundingClientRect().width,height:()=>innerHeight,duration:1.8},'expand');
+        tl.to([otherLines,headingStart,headingEnd],{opacity:0,duration:.8,ease:'power1.out'},'expand');
+        tl.addLabel('settle','expand+=1.8');
+        tl.to(image,{height:()=>target.getBoundingClientRect().height,duration:.85,ease:'power2.inOut'},'settle');
+        tl.add(reveal,'settle+=.85');
+        tl.to(loader,{opacity:0,duration:.5,ease:'power1.out'},'settle+=.9');
+        return;
       }
 
       // Use the hero's layout bounds, not 100vw: desktop reserves scrollbar space.

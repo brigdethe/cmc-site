@@ -1,0 +1,146 @@
+{
+  "/media/cmc-library.jpg": [
+    {
+      "width": 480,
+      "src": "/media/optimized/media-cmc-library-jpg-480.webp"
+    },
+    {
+      "width": 960,
+      "src": "/media/optimized/media-cmc-library-jpg-960.webp"
+    },
+    {
+      "width": 1600,
+      "src": "/media/optimized/media-cmc-library-jpg-1600.webp"
+    }
+  ],
+  "/media/cmc-project.png": [
+    {
+      "width": 480,
+      "src": "/media/optimized/media-cmc-project-png-480.webp"
+    },
+    {
+      "width": 960,
+      "src": "/media/optimized/media-cmc-project-png-960.webp"
+    },
+    {
+      "width": 1600,
+      "src": "/media/optimized/media-cmc-project-png-1600.webp"
+    }
+  ],
+  "/media/hero.jpg": [
+    {
+      "width": 480,
+      "src": "/media/optimized/media-hero-jpg-480.webp"
+    },
+    {
+      "width": 960,
+      "src": "/media/optimized/media-hero-jpg-960.webp"
+    },
+    {
+      "width": 1600,
+      "src": "/media/optimized/media-hero-jpg-1600.webp"
+    }
+  ],
+  "/seminar/highlights/address.png": [
+    {
+      "width": 480,
+      "src": "/media/optimized/seminar-highlights-address-png-480.webp"
+    },
+    {
+      "width": 800,
+      "src": "/media/optimized/seminar-highlights-address-png-800.webp"
+    }
+  ],
+  "/seminar/highlights/arrival.png": [
+    {
+      "width": 480,
+      "src": "/media/optimized/seminar-highlights-arrival-png-480.webp"
+    },
+    {
+      "width": 800,
+      "src": "/media/optimized/seminar-highlights-arrival-png-800.webp"
+    }
+  ],
+  "/seminar/highlights/conversation.png": [
+    {
+      "width": 480,
+      "src": "/media/optimized/seminar-highlights-conversation-png-480.webp"
+    },
+    {
+      "width": 800,
+      "src": "/media/optimized/seminar-highlights-conversation-png-800.webp"
+    }
+  ],
+  "/seminar/highlights/delegates.png": [
+    {
+      "width": 480,
+      "src": "/media/optimized/seminar-highlights-delegates-png-480.webp"
+    },
+    {
+      "width": 800,
+      "src": "/media/optimized/seminar-highlights-delegates-png-800.webp"
+    }
+  ],
+  "/seminar/highlights/participants.png": [
+    {
+      "width": 480,
+      "src": "/media/optimized/seminar-highlights-participants-png-480.webp"
+    },
+    {
+      "width": 800,
+      "src": "/media/optimized/seminar-highlights-participants-png-800.webp"
+    }
+  ],
+  "/seminar/highlights/speakers.png": [
+    {
+      "width": 480,
+      "src": "/media/optimized/seminar-highlights-speakers-png-480.webp"
+    },
+    {
+      "width": 800,
+      "src": "/media/optimized/seminar-highlights-speakers-png-800.webp"
+    }
+  ],
+  "/seminar/highlights/stage.png": [
+    {
+      "width": 480,
+      "src": "/media/optimized/seminar-highlights-stage-png-480.webp"
+    },
+    {
+      "width": 800,
+      "src": "/media/optimized/seminar-highlights-stage-png-800.webp"
+    }
+  ],
+  "/media/people/david-bailey.webp": [
+    {
+      "width": 480,
+      "src": "/media/optimized/media-people-david-bailey-webp-480.webp"
+    },
+    {
+      "width": 720,
+      "src": "/media/optimized/media-people-david-bailey-webp-720.webp"
+    }
+  ],
+  "/media/people/juliette-twumasi-anokye.webp": [
+    {
+      "width": 459,
+      "src": "/media/optimized/media-people-juliette-twumasi-anokye-webp-459.webp"
+    }
+  ],
+  "/media/people/paul-kofi-datsa.webp": [
+    {
+      "width": 433,
+      "src": "/media/optimized/media-people-paul-kofi-datsa-webp-433.webp"
+    }
+  ],
+  "/media/people/peter-alexiadis.webp": [
+    {
+      "width": 480,
+      "src": "/media/optimized/media-people-peter-alexiadis-webp-480.webp"
+    },
+    {
+      "width": 720,
+      "src": "/media/optimized/media-people-peter-alexiadis-webp-720.webp"
+    }
+  ]
+}

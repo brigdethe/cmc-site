@@ -19,3 +19,8 @@
 .text-link .link-label{text-decoration:underline;text-underline-offset:4px}
 .text-link .arrow,.text-link .arrow:after{text-decoration:none}
 .cmc-invitation-contours{stroke:var(--cmc-gold);opacity:.16}
+
+.oh-forum{background:#3d2b27;color:var(--cream)}
+.oh-forum .oh-stat-number{color:var(--cmc-gold)}
+.oh-gallery{background:#3d2b27;color:var(--cream)}
+.oh-company-brown{background:#3d2b27;color:var(--cream)}

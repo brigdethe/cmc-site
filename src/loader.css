@@ -53,7 +53,7 @@
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.04em;
-  text-transform: lowercase;
+  text-transform: none;
   text-align: center;
   position: relative;
   width: auto;
@@ -235,3 +235,7 @@
     font-size: clamp(1.8rem, 7.2vw, 2.7rem);
   }
 }
+
+/* Preserve the page width while the preloader locks document scrolling. */
+html{scrollbar-gutter:stable}
+

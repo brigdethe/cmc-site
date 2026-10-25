@@ -14,3 +14,11 @@
 
 .company-invitation-description{margin:0 0 32px;font-size:20px;line-height:1.18;letter-spacing:-.03em}
 @media(max-width:767px){.company-invitation-description{font-size:18px}}
+
+.seminar-invitation-panel{position:relative;isolation:isolate;overflow:hidden}
+.seminar-invitation-panel>.footer-card-lines{z-index:-1}
+.seminar-invitation-panel>.footer-card-lines--company-panel{left:0;width:100%;max-width:100%;height:100%;stroke-width:1;pointer-events:none}
+.seminar-invitation-panel .footer-card-line-base{opacity:.09}
+.seminar-invitation-panel .footer-card-line-trace{opacity:.48}
+
+.seminar-invitation-panel .footer-card-line--3{display:block}

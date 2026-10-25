@@ -1,6 +1,9 @@
+import ResponsiveImage from './ResponsiveImage.jsx';
 import { useEffect, useRef, useState } from 'react';
 import './OurHomeSections.css';
 import { Arrow } from './Header.jsx';
+import StickyStoryShowcase from './StickyStoryShowcase.jsx';
+import FooterCardLines from './FooterCardLines.jsx';
 
 const galleryImages = [
   'https://ik.imagekit.io/dr5fryhth/Screenshots/Screenshot%202026-04-10%20110118.png?updatedAt=1775838071060',
@@ -10,15 +13,13 @@ const galleryImages = [
   'https://ik.imagekit.io/dr5fryhth/Screenshots/Screenshot%202026-04-10%20105938.png?updatedAt=1775838070904',
   'https://ik.imagekit.io/dr5fryhth/Screenshots/Screenshot%202026-04-10%20110028.png?updatedAt=1775838067301',
 ];
-const intro = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.';
-const body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vestibulum id ligula porta felis euismod semper.';
 
 function RevealText({ as: Tag = 'p', children, className = '' }) {
   const words = children.split(' ');
   return <Tag className={`oh-reveal ${className}`} data-oh-reveal style={{ '--word-count': words.length }}>{words.map((word, index) => <span key={index} style={{ '--word-index': index }}>{word}{index < words.length - 1 ? ' ' : ''}</span>)}</Tag>;
 }
 
-function HomeGallery() {
+export function HomeGallery() {
   const viewport = useRef(null), cursor = useRef(null), drag = useRef(null), frame = useRef(0);
   const [index, setIndex] = useState(0);
   useEffect(() => () => cancelAnimationFrame(frame.current), []);
@@ -59,7 +60,8 @@ function HomeGallery() {
         const rect = viewport.current.getBoundingClientRect();
         go(event.clientX - rect.left < rect.width * .25 ? -1 : 1);
       }}>
-      {galleryImages.map((src, i) => <figure key={src}><img src={src} alt={`CMC seminar, gallery image ${i + 1}`} loading="lazy" draggable="false"/></figure>)}
+      <FooterCardLines variant="project-hero"/>
+      {galleryImages.map((src, i) => <figure key={src}><ResponsiveImage src={src} alt={`CMC seminar, gallery image ${i + 1}`} loading="lazy" draggable="false"/></figure>)}
       <span className="oh-gallery-cursor" aria-hidden="true" ref={cursor} data-label="Next"/>
     </div>
     <div className="oh-gallery-controls"><span aria-live="polite">{String(index + 1).padStart(2, '0')} / {String(galleryImages.length).padStart(2, '0')}</span><div><button aria-label="Previous seminar image" disabled={index === 0} onClick={() => go(-1)}>←</button><button aria-label="Next seminar image" disabled={index === galleryImages.length - 1} onClick={() => go(1)}>→</button></div></div>
@@ -68,6 +70,12 @@ function HomeGallery() {
 
 export default function OurHomeSections({ onContact }) {
   const root = useRef(null);
+  const [sceneReady,setSceneReady]=useState(false);
+  useEffect(()=>{
+   const observer=new IntersectionObserver(([entry])=>{if(entry.isIntersecting){setSceneReady(true);observer.disconnect()}},{rootMargin:'100% 0px'});
+   observer.observe(root.current.querySelector('.oh-intro-scene'));
+   return()=>observer.disconnect();
+  },[]);
   useEffect(() => {
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const block = root.current;
@@ -121,12 +129,15 @@ export default function OurHomeSections({ onContact }) {
     <section className="oh-opening" aria-labelledby="our-space-title">
       <div className="oh-heading"><p>Ghana Competition Law &amp; Policy Seminar</p><h2 id="our-space-title">Laying a sound foundation.<br/>For a new era.</h2></div>
       <div className="oh-intro-scene" data-oh-parallax data-home-scheme="light">
-        <div className="oh-intro-media"><img src="https://ik.imagekit.io/dr5fryhth/Screenshots/Screenshot%202026-04-10%20105938.png?updatedAt=1775838070904" alt="CMC Ghana Competition Law and Policy Seminar" loading="lazy"/><div className="oh-intro-shade"/></div>
-        <div className="oh-intro-copy"><RevealText>On 25 March 2026, CMC brought together regulators, legal practitioners, policymakers and businesses in Accra to examine the foundations of Ghana’s competition framework—from institutional design to enforcement.</RevealText></div>
+        <div className="oh-intro-media">{sceneReady&&<ResponsiveImage src="https://ik.imagekit.io/dr5fryhth/Screenshots/Screenshot%202026-04-10%20110153.png?updatedAt=1775838069193" alt="CMC Ghana Competition Law and Policy Seminar" loading="eager"/>}<div className="oh-intro-shade"/></div>
+        <div className="oh-intro-copy"><RevealText>Regulators, legal practitioners, policymakers and business representatives brought their experience to the discussion, sharing questions and perspectives from their work.</RevealText></div>
       </div>
     </section>
-    <section className="oh-editorial oh-editorial-wide" aria-label="About the seminar"><RevealText as="h2" className="oh-editorial-title">A forum for informed debate.</RevealText><div className="oh-seminar-description"><RevealText>The Ghana Competition Law &amp; Policy Seminar brings together perspectives from economics, law, business and regulation. Its first edition explored institutional design, enforcement and the relationship between competition policy and sector regulation—creating space for practical discussion about Ghana’s emerging framework.</RevealText><button className="text-link" onClick={onContact}><span className="link-label">RSVP for the next seminar</span><Arrow/></button><div className="oh-stats" aria-label="First seminar in numbers">{[[102,'Attendees'],[23,'Law firms'],[5,'Speakers'],[1,'Inaugural edition']].map(([value,label]) => <div key={label}><span className="oh-stat-number" data-oh-count={value} aria-label={String(value)}>00</span><span>{label}</span></div>)}</div></div></section>
+    <section className="oh-editorial oh-editorial-wide oh-forum" aria-label="About the seminar" data-home-scheme="light"><RevealText as="h2" className="oh-editorial-title">The questions behind the rules.</RevealText><div className="oh-seminar-description"><RevealText>Who should enforce competition rules, and what powers would they need? How should their work fit alongside existing regulators? The first edition explored these practical questions through presentations and discussion, with time for participants to question the speakers.</RevealText><button className="text-link" onClick={onContact}><span className="link-label">Register interest in the next seminar</span><Arrow/></button><div className="oh-stats" aria-label="First seminar in numbers">{[[102,'Attendees'],[23,'Law firms'],[5,'Speakers'],[1,'Inaugural edition']].map(([value,label]) => <div key={label}><span className="oh-stat-number" data-oh-count={value} aria-label={String(value)}>00</span><span>{label}</span></div>)}</div></div></section>
+    <section className="oh-heading oh-highlights-heading" aria-labelledby="seminar-highlights-title" data-home-scheme="light"><p>The day’s programme</p><h2 id="seminar-highlights-title">Four sessions.<br/>A closer look.</h2></section>
+    <StickyStoryShowcase onContact={onContact}/>
+    <section className="oh-heading oh-gallery-heading" aria-labelledby="seminar-gallery-title" data-home-scheme="dark"><p>Gallery</p><h2 id="seminar-gallery-title">Moments from the seminar.</h2></section>
     <HomeGallery/>
-    <section className="oh-editorial" aria-label="CMC approach"><RevealText as="h2" className="oh-editorial-title">Ghanaian context. Broader perspectives.</RevealText><RevealText>Markets are shaped by the institutions, businesses and people within them. CMC starts with Ghana’s economic and regulatory context, drawing on perspectives from competition economics, law and policy. Through education, research and stakeholder dialogue, we make space for informed discussion of the choices that affect how markets function—and how competition can work in practice.</RevealText></section>
   </div>;
 }
+

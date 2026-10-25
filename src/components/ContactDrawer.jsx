@@ -17,10 +17,10 @@ export default function ContactDrawer({ open, onClose }) {
   };
   return <dialog ref={dialog} className="contact-drawer" onCancel={e=>{e.preventDefault();close();}} onClick={e=>{if(e.target===dialog.current){const r=dialog.current.getBoundingClientRect();if(e.clientX<r.left)close();}}} aria-labelledby="contact-title">
     <div className="drawer-bar"><span>Contact us</span><button className="close-button" onClick={close} aria-label="Close contact form">×</button></div>
-    <div className="drawer-body"><h2 id="contact-title">Let’s talk...</h2><p className="contact-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tell us what you have in mind.</p>
+    <div className="drawer-body"><h2 id="contact-title">Let’s talk...</h2><p className="contact-intro">Contact CMC about our work, a speaking opportunity or the next seminar.</p>
       <form onSubmit={e=>{e.preventDefault();setSent(true);}}>
         {[['Name','text','name'],['Email address','email','email'],['Subject','text','subject']].map(([label,type,name],i)=><label className="field" key={name}><span><small>0{i+1}</small>{label}*</span><input name={name} type={type} required autoComplete={name==='subject'?'off':name}/></label>)}
-        <label className="field"><span><small>04</small>Where to*</span><select name="enquiry"><option>General enquiry</option><option>A new project</option><option>Collaborate with us</option></select></label>
+        <label className="field"><span><small>04</small>Where to*</span><select name="enquiry"><option>General enquiry</option><option>Next seminar</option><option>Research or collaboration</option></select></label>
         <label className="field"><span><small>05</small>Message*</span><textarea name="message" required rows="3"/></label>
         <p className="demo-note">Demo form — your details stay in this browser. Nothing is sent or saved.</p>
         <button className="send-button" type="submit">Preview message<Arrow/></button>

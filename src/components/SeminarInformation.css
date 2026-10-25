@@ -1,0 +1,5 @@
+.seminar-information{background:var(--cream);color:var(--ink)}
+.seminar-information p:not(.cmc-case-standfirst){font-size:20px;line-height:1.4;letter-spacing:-.025em}
+.seminar-information .cmc-case-standfirst{font-size:clamp(26px,2.5vw,42px);line-height:1.2;letter-spacing:-.035em}
+.seminar-information .cmc-case-info-label,.seminar-information dl{font-size:16px;line-height:1.4;letter-spacing:-.015em}
+@media(max-width:767px){.seminar-information p:not(.cmc-case-standfirst){font-size:19px}.seminar-information .cmc-case-standfirst{font-size:26px}.seminar-information .cmc-case-info-label,.seminar-information dl{font-size:14px}}

@@ -479,3 +479,5 @@ User requested companylabel singleline: kicker uses max-content width/nowrap, bo
 - User authorized push and deployment. Verified GitHub/Vercel account brigdethe. Created private brigdethe/cmc-site, pushed clean-baseline to remote main; connected repository to Vercel brigdethes-projects/cmc-site for automatic deployments.
 - Production https://cmc-site-peach.vercel.app. Initial deployment READY. Public unauthenticated Chrome checks for Home, Seminar, Register and Projects return200, correct headings, no runtime errors or horizontal overflow. Six tests/build pass. Register remains preview-only and director note draft.
 - vercel.json specifies Vite/dist with SPA fallback. Local .vercel and .env.local ignored; no credentials committed.
+
+- Approved CMC metadata rewrite: company/event/register/projects-specific titles/descriptions, canonical current Vercel domain, OpenGraph and Twitter library-photo previews. Central metadata helper updates client navigation; build emits static route HTML tags for non-JS crawlers. Removed competing title setters. Build/six tests pass. Awaiting SEO audit recommendations; changes not yet pushed.

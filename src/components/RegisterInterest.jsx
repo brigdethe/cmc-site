@@ -6,7 +6,6 @@ import './RegisterInterest.css';
 export default function RegisterInterest(){
  const [role,setRole]=useState('Attendee'),[preview,setPreview]=useState(null);
  const result=useRef(null);
- useEffect(()=>{document.title='Register interest — CMC Seminar 2027';},[]);
  useEffect(()=>{if(preview)result.current?.focus();},[preview]);
  const submit=e=>{
   e.preventDefault();

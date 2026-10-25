@@ -37,7 +37,7 @@ export default function ProjectPage({skipPreloader=false}){
  const root=useRef(null),[menu,setMenu]=useState(false),[contact,setContact]=useState(false);
  const openContact=useCallback(()=>setContact(true),[]),closeContact=useCallback(()=>setContact(false),[]);
  useLayoutEffect(()=>{
-  document.title='CMC — Competition & Markets Center';
+  
   const mm=gsap.matchMedia();
   mm.add('(prefers-reduced-motion: no-preference)',()=>{
    const context=gsap.context(()=>{

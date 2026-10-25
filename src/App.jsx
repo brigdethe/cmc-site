@@ -14,7 +14,7 @@ export default function App({ skipPreloader = false }){
   const [ready,setReady]=useState(()=>skipPreloader||shouldSaveData()),[loading,setLoading]=useState(()=>!skipPreloader&&!shouldSaveData()),[contact,setContact]=useState(false),[menu,setMenu]=useState(false);
   const reveal=useCallback(()=>setReady(true),[]),finish=useCallback(()=>setLoading(false),[]),openContact=useCallback(()=>setContact(true),[]),closeContact=useCallback(()=>setContact(false),[]);
   useEffect(()=>{
-    document.title='CMC — Competition & Markets Center';
+    
     let frame=0;
     const update=()=>{
       frame=0;

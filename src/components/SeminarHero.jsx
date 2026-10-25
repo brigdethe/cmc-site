@@ -3,7 +3,7 @@ import { Arrow } from './Header.jsx';
 import FooterCardLines from './FooterCardLines.jsx';
 import './SeminarHero.css';
 export default function SeminarHero(){
- useEffect(()=>{document.title='CMC Seminar — Competition Law & Policy';import(/* @vite-ignore */ (location.origin+'/seminar-badge/card.js')).catch(()=>{});},[]);
+ useEffect(()=>{import(/* @vite-ignore */ (location.origin+'/seminar-badge/card.js')).catch(()=>{});},[]);
  return <section className="cmc-seminar-hero" id="home" data-home-scheme="dark" aria-labelledby="seminar-title">
   <FooterCardLines variant="hero"/>
   <hanging-card aria-label="Interactive CMC seminar badge"/>

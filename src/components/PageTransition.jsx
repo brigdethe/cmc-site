@@ -1,3 +1,4 @@
+import { updateMetadata } from '../lib/site-metadata.js';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 const loadApp=()=>import('../App.jsx');
 const App=lazy(loadApp);
@@ -11,6 +12,7 @@ import ShortPageLoader from './ShortPageLoader.jsx';
 const route=()=>location.pathname.replace(/\/$/,'')||'/';
 export default function PageTransition(){
  const [page,setPage]=useState(route),[phase,setPhase]=useState(''),[navigated,setNavigated]=useState(false);
+ useEffect(()=>{updateMetadata(page);},[page]);
  const busy=useRef(false),activePath=useRef(route());
  useEffect(()=>{
   let timer,frame,disposed=false;

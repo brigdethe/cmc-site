@@ -22,7 +22,6 @@ export default function ContactDrawer({ open, onClose }) {
         {[['Name','text','name'],['Email address','email','email'],['Subject','text','subject']].map(([label,type,name],i)=><label className="field" key={name}><span><small>0{i+1}</small>{label}*</span><input name={name} type={type} required autoComplete={name==='subject'?'off':name}/></label>)}
         <label className="field"><span><small>04</small>Where to*</span><select name="enquiry"><option>General enquiry</option><option>Next seminar</option><option>Research or collaboration</option></select></label>
         <label className="field"><span><small>05</small>Message*</span><textarea name="message" required rows="3"/></label>
-        <p className="demo-note">Demo form — your details stay in this browser. Nothing is sent or saved.</p>
         <button className="send-button" type="submit">Preview message<Arrow/></button>
         {sent&&<p className="form-result" role="status">Preview complete. This demo has no sending service; no message was sent.</p>}
       </form>

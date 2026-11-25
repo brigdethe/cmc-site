@@ -1,4 +1,5 @@
 import { updateMetadata } from '../lib/site-metadata.js';
+import { prefetchBadge, whenIdleAfterLoad } from '../lib/badge-prefetch.js';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 const loadApp=()=>import('../App.jsx');
 const App=lazy(loadApp);
@@ -13,6 +14,7 @@ const route=()=>location.pathname.replace(/\/$/,'')||'/';
 export default function PageTransition(){
  const [page,setPage]=useState(route),[phase,setPhase]=useState(''),[navigated,setNavigated]=useState(false);
  useEffect(()=>{updateMetadata(page);},[page]);
+ useEffect(()=>{if(route()==='/')return whenIdleAfterLoad(()=>prefetchBadge(loadBadgePage));},[]);
  const busy=useRef(false),activePath=useRef(route());
  useEffect(()=>{
   let timer,frame,disposed=false;
